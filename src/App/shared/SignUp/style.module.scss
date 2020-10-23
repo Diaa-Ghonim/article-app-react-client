@@ -1,0 +1,107 @@
+.container {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 25px;
+  .formContainer {
+    border: 1px solid #ddd;
+    padding: 20px;
+    width: 340px;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
+    form {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+      div {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+
+        label,
+        i {
+          padding: 5px 5px;
+          // color: #606770;
+        }
+
+        ::placeholder {
+          font-weight: 400;
+          color: #90949c;
+        }
+
+        input[type='email'],
+        input[type='password'],
+        input[type='text'],
+        input[type='submit'],
+        .createAccount {
+          padding: 10px 16px;
+          outline: none;
+          border-radius: 5px;
+          border: 1px solid #ddd;
+          margin-bottom: 10px;
+          font-size: 15px;
+        }
+
+        input[type='submit'] {
+          background-color: #337ab7;
+          cursor: pointer;
+          color: white;
+          font-weight: bold;
+          margin-top: 20px;
+        }
+      }
+
+      .selectContainer {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        // margin-top: 5px;
+        select {
+          padding: 5px 18px;
+          border-color: #ddd;
+          border-radius: 5px;
+        }
+      }
+
+      .radioContainer {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+
+        div {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          border: 1px solid #ddd;
+          border-radius: 5px;
+          padding: 2px 15px;
+        }
+      }
+    }
+  }
+}
+
+.svgError {
+  fill: red;
+  height: 24px;
+  width: 24px;
+  position: absolute;
+  top: 39px;
+  right: 5px;
+}
+
+.svgErrorSelect {
+  fill: red;
+  height: 24px;
+  width: 24px;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+.warnBorder {
+  border: 1px solid red !important;
+}

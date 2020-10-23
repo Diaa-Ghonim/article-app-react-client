@@ -1,0 +1,24 @@
+export const GET_ARTICLE = 'GET_ARTICLE';
+export const ADD_ARTICLE = 'ADD_ARTICLE';
+export const DELETE_ARTICLE = 'DELETE_ARTICLE';
+
+export const LIKE_ARTICLE = 'LIKE_ARTICLE';
+export const REMOVE_LIKE_ARTICLE = 'REMOVE_LIKE_ARTICLE';
+
+export const DISLIKE_ARTICLE = 'DISLIKE_ARTICLE';
+export const REMOVE_DISLIKE_ARTICLE = 'REMOVE_DISLIKE_ARTICLE';
+
+export const SAVE_ARTICLE = 'SAVE_ARTICLE';
+export const REMOVE_SAVE_ARTICLE = 'REMOVE_SAVE_ARTICLE';
+
+export const SHARE_ARTICLE = 'SHARE_ARTICLE';
+
+export const GET_ARTICLES = 'GET_ARTICLES';
+
+export const IS_POSTED = 'IS_POSTED';
+export const TRY_LOAD_AGAIN = 'TRY_LOAD_AGAIN';
+export const LOADING_NOW = 'LOADING_NOW';
+export const LOADING_FINISH = 'LOADING_FINISH';
+export const ERROR_HAPPEN = 'ERROR_HAPPEN';
+export const NOT_ERROR = 'NOT_ERROR';
+

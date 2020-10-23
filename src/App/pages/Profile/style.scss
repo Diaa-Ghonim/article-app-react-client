@@ -1,0 +1,14 @@
+@import '../../ScssVars';
+
+.profile-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  .user-card-holder {
+    width: 100%;
+  }
+  .user-articles-with-middle-nav {
+    width: 100%;
+  }
+}
