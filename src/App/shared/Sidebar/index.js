@@ -1,25 +1,21 @@
 import React, { Component } from 'react';
-import TopReadingTitles from '../../components/TopReading/TopReadingTitles';
-import BestWriters from '../../components/BestWriters/BestWritersNames';
+import { ListOfTopReadingTitles } from '../../features/topReadingArticles';
+import { ListOfBestWritersNames } from '../../features/bestWriters';
 import Styles from './style.module.scss';
 import ErrorBoundary from '../ErrorBoundry';
-// const styles = require('./style.module.scss');
 
-export default class index extends Component {
+export default (props) => {
+  return (
+    <div className={Styles.sidebarContent}>
+      <ErrorBoundary>
+        <ListOfTopReadingTitles />
 
-  render() {
-    return (
-      <div className={Styles.sidebarContent}>
-        <ErrorBoundary>
-        <TopReadingTitles /> 
-          
-        </ErrorBoundary>
+      </ErrorBoundary>
 
-        <ErrorBoundary>
-        <BestWriters />
-        </ErrorBoundary>
-        
-      </div>
-    );
-  }
+      <ErrorBoundary>
+        <ListOfBestWritersNames />
+      </ErrorBoundary>
+
+    </div>
+  );
 }

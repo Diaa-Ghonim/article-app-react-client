@@ -1,7 +1,5 @@
 import React from 'react';
-// import PropTypes from 'prop-types'
-// import Article from '../../components/Article/articleComponents/Article';
-import TopReadingArticles from '../../components/TopReading/TopReadingArticles';
+import { TopReadingArticles } from '../../features/topReadingArticles';
 
 export default function index() {
   return (

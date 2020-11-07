@@ -1,9 +1,0 @@
-@import '../../../../ScssVars/';
-
-.oneArticleWrapper {
-  width: 80%;
-  @media screen and (max-width: $break-medium) {
-    width: 100%;
-    // flex-direction: column;
-  }
-}

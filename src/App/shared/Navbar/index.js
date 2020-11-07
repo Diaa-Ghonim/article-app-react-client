@@ -52,8 +52,7 @@ export default class Navbar extends Component {
   }
 
   hideDropdownAfterClickedOnListItemOrLink(e) {
-    if (e.target.tagName === 'LI' || e.target.tagName === 'A')
-     {
+    if (e.target.tagName === 'LI' || e.target.tagName === 'A') {
       this.makeDroppedStateFalse()
     }
   }
@@ -74,8 +73,8 @@ export default class Navbar extends Component {
     const dropdown = this.state.dropped ? (
       <Dropdown dropped={this.state.dropped} />
     ) : (
-      ''
-    );
+        ''
+      );
 
     return (
       <NavbarHolder>

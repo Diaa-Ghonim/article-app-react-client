@@ -1,6 +1,6 @@
 
 import styled from 'styled-components';
-import {device } from '../../../breakPoints';
+import { device } from '../../../breakPoints';
 import { NavLink } from 'react-router-dom';
 
 export const StyledNavLink = styled(NavLink)`

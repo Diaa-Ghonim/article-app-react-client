@@ -1,20 +1,16 @@
 import React, { Component } from 'react';
 import { NavLink, Route, Switch } from 'react-router-dom';
-// import Profile from '..';
-// import './style.scss';
 import Style from './style.module.scss';
-import One from '../userArticles/One';
-import Two from '../userArticles/Two';
-import Three from '../userArticles/Three';
-import Four from '../userArticles/Four';
+import { UserArticles } from '../../../features/userArticles';
+import { UserLikedArticles } from '../../../features/userLikedArticles';
+import { UserDislikedArticles } from '../../../features/userDislikedArticles';
+import { UserSavedArticles } from '../../../features/userSavedArticles';
+
 
 export default class index extends Component {
-  componentDidMount() {
-    // console.log('rednder UserArticlesWithMiddleNav 1');
-  }
+
   render() {
     const { username } = this.props;
-    // console.log('rednder midilleNav 2 ' + username);
     return (
       <>
         <div className={Style.container}>
@@ -64,19 +60,19 @@ export default class index extends Component {
           <Switch>
             <Route exact path={`/${username}`}>
               <h3>Please select a topic 1.</h3>
-              <One username={username} />
+              <UserArticles username={username} />
             </Route>
             <Route path={`/${username}/likes`}>
               <h3>Please select a topic 2.</h3>
-              <Two username={username} />
+              <UserLikedArticles username={username} />
             </Route>
             <Route path={`/${username}/dislikes`}>
               <h3>Please select a topic 3.</h3>
-              <Three username={username} />
+              <UserDislikedArticles username={username} />
             </Route>
             <Route path={`/${username}/saves`}>
               <h3>Please select a topic 4.</h3>
-              <Four username={username} />
+              <UserSavedArticles username={username} />
             </Route>
           </Switch>
         </div>

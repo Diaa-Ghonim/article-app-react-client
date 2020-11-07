@@ -12,12 +12,14 @@
 
     .navbar-content {
       background-color: $color-tomato;
+
       .navbar-fixed {
         height: 50px;
         display: flex;
         padding: 10px 5px;
         margin: 0 auto;
         max-width: $break-large;
+
         div:first-child {
           flex-grow: 1;
         }
@@ -30,6 +32,7 @@
             display: flex;
             justify-content: flex-end;
             padding-right: 15px;
+
             svg {
               display: block;
               height: 30px;
@@ -40,9 +43,11 @@
               }
             }
           }
+
           .dropped {
             display: none;
           }
+
           .dropdown {
             width: 189px;
             height: 277px;
@@ -75,6 +80,7 @@
               border-left: 1px solid $color-black-dotone-opacity;
               transition: all 5s ease-in-out;
             }
+
             .options {
               display: block;
               background-color: $color-white;
@@ -82,8 +88,9 @@
               margin-top: 15px;
               // border-bottom: 1px solid rgba(0, 0, 0, .15);
             }
-            .register-list-holder {
-            }
+
+            .register-list-holder {}
+
             ul {
               display: flex;
               flex-direction: column;
@@ -92,12 +99,15 @@
                 padding: 10px 25px;
                 border-bottom: 1px solid $color-black-dotone-opacity;
                 cursor: pointer;
+
                 a {
                   color: $color-black-light;
                   // color: black;
                 }
+
                 &:hover {
                   background-color: $color-tomato;
+
                   a {
                     color: $color-offwhite;
                   }
@@ -112,17 +122,20 @@
           padding: 0;
           margin: 0;
           list-style-type: none;
+
           li {
             padding: 5px 10px;
             cursor: pointer;
 
             a {
               color: $color-offwhite;
+
               svg {
                 height: 25px;
                 fill: $color-offwhite;
                 display: none;
               }
+
               @media screen and(max-width : $break-medium) {
                 span {
                   display: none;
@@ -130,15 +143,18 @@
               }
             }
           }
+
           .list-search {
             display: none;
           }
+
           @media screen and(max-width : $break-medium) {
             li {
               a {
                 svg {
                   display: block;
                 }
+
                 // span{
                 //     display: inline-block;
                 // }
@@ -160,16 +176,19 @@
     .register-list-holder {
       display: none;
     }
+
     .profile-list,
     .create-article-list,
     .sign-out {
       display: block;
     }
   }
+
   .navbar[data-user-logged-in='false'] {
     .register-list-holder {
       display: block;
     }
+
     .profile-list,
     .create-article-list,
     .sign-out {
