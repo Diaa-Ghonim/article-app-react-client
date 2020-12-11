@@ -27,9 +27,9 @@ export default function Index() {
         {
           !isAuthenticate ? '' : <>
             <Li className='profile-list'>
-              <StyledNavLink to={user.username}>
+              <StyledNavLink to={`/${user.username}`}>
                 <ProfileSvg stopPropagation={stopPropagation} />
-                <Span>{user.username}</Span>
+                <Span>{user.name}</Span>
               </StyledNavLink>
             </Li>
 

@@ -1,27 +1,36 @@
 
 import {
-  SIGN_FAILURE,
-  CLEAR_SIGN_ERROR
+  USER_REGISTRATION,
+  CLEAR_USER_REGISTRATION_ERROR,
+  RESET_AUTH_SUCCESS
 } from '../actionsType';
-
+import { parseError } from '../../../util/parseError';
 const initialState = {
-  error: {
-    isError: false,
-    msg: ''
-  }
+  authSuccess: false,
+  error: null
 }
 
-export const signErrorReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case SIGN_FAILURE:
+export const signErrorReducer = (state = initialState, { type, payload }) => {
+  switch (type) {
+    case USER_REGISTRATION.FAILURE:
       return {
         ...state,
-        error: { isError: true, msg: action.payload }
+        error: parseError(payload.error)
       }
-    case CLEAR_SIGN_ERROR:
+    case USER_REGISTRATION.SUCCESS:
       return {
         ...state,
-        error: { isError: false, msg: '' }
+        authSuccess: true
+      }
+    case RESET_AUTH_SUCCESS:
+      return {
+        ...state,
+        authSuccess: false
+      }
+    case CLEAR_USER_REGISTRATION_ERROR:
+      return {
+        ...state,
+        error: null
       }
 
     default:

@@ -1,6 +1,6 @@
 import React from 'react';
 // import PropTypes from 'prop-types'
-import { BestWritersCards } from '../../features/bestWriters';
+import { BestWritersCards } from '../../features/user/bestWriters';
 
 export default function index() {
   return (

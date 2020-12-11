@@ -1,126 +1,66 @@
 
-
+import { createAction } from '../../../util/createActionsHelpers';
 import {
-  AUTHENTICATE_MAIN_USER_SUCCESS,
-  AUTHENTICATE_MAIN_USER_START,
-  AUTHENTICATE_MAIN_USER_FAILURE,
-  SIGN_SUCCESS,
-  SIGN_FAILURE,
+  AUTHENTICATE_MAIN_USER,
+  USER_REGISTRATION,
   SIGN_OUT,
-  CLEAR_SIGN_ERROR
+  CLEAR_USER_REGISTRATION_ERROR,
+  RESET_AUTH_SUCCESS
 } from '../actionsType';
+import axios from '../../../util/axiosConfig';
 
-import axios from 'axios';
-
-
-export const signOut = () => ({
-  type: SIGN_OUT
-})
-
-const authenticateMainUserSuccess = user => ({
-  type: AUTHENTICATE_MAIN_USER_SUCCESS,
-  payload: user
-});
-
-const authenticateMainUserStart = () => ({
-  type: AUTHENTICATE_MAIN_USER_START
-});
-
-const authenticateMainUserFailure = errorMsg => ({
-  type: AUTHENTICATE_MAIN_USER_FAILURE,
-  payload: errorMsg
-});
-const signSuccess = ({ user, token }) => ({
-  type: SIGN_SUCCESS,
-  payload: user,
-  token: token
-});
-const signFailure = (errorMsg) => ({
-  type: SIGN_FAILURE,
-  payload: errorMsg
-});
-
-export const clearSignError = () => ({
-  type: CLEAR_SIGN_ERROR
-});
+export const authenticateMainUserStart = createAction(AUTHENTICATE_MAIN_USER.LOADING);
+export const authenticateMainUserSuccess = createAction(AUTHENTICATE_MAIN_USER.SUCCESS, 'user');
+export const authenticateMainUserFailure = createAction(AUTHENTICATE_MAIN_USER.FAILURE, 'error');
+export const signOut = createAction(SIGN_OUT);
+export const userRegistrationSuccess = createAction(USER_REGISTRATION.SUCCESS, 'user', 'token');
+export const userRegistrationSuccessFailure = createAction(USER_REGISTRATION.FAILURE, 'error');
+export const clearUserRegistrationError = createAction(CLEAR_USER_REGISTRATION_ERROR);
+export const resetAuthSuccess = createAction(RESET_AUTH_SUCCESS);
 
 
-export const authenticateMainUser = () => async (dispatch, getState) => {
-  console.log(getState(), 'getState');
+export const authenticateMainUser = () => async (dispatch) => {
   dispatch(authenticateMainUserStart());
-
   try {
-    // throw new Error('something error');
-    const response = await axios.get('/api/users/auth');
-    const data = response.data;
-    console.log(response);
-    setTimeout(() => {
-      dispatch(authenticateMainUserSuccess(data));
-    }, 1000);
+    const { data: user } = await axios.get('/api/users/auth');
+    dispatch(authenticateMainUserSuccess(user));
   } catch (error) {
-    // console.log(error.toJSON());
-    if (error.response) {
-      dispatch(authenticateMainUserFailure(error.response.data));
-    } else {
-      dispatch(authenticateMainUserFailure('something went wrong !!!'));
-    }
+    dispatch(authenticateMainUserFailure(error));
   }
 }
 
-export const signIn = ({ email, password }) => async (dispatch, getState) => {
-  console.log(getState(), 'getState');
-  // dispatch(authenticateMainUserStart());
+export const signIn = ({ email, password }) => async (dispatch) => {
   try {
-    const response = await axios.post('/api/users/signin', {
+    const { data: { user, token } } = await axios.post('/api/auth/signin', {
       email,
       password
     });
-    const data = response.data;
-    console.log(response);
-    setTimeout(() => {
-      dispatch(signSuccess(data));
-    }, 10000);
+    dispatch(userRegistrationSuccess(user, token));
+    dispatch({ type: 'S_SUCCESS' });
   } catch (error) {
-    console.log(error.toJSON());
-    console.log(error.response)
-    if (error.response) {
-      if (error.status === 500) {
-        dispatch(signFailure(error.response.data.message));
-      } else {
-        dispatch(signFailure(error.response.data.message));
-
-      }
-    } else {
-      dispatch(signFailure('something went wrong !!!'));
-    }
+    dispatch(userRegistrationSuccessFailure(error));
   }
 }
 
-export const signUp = ({ fullname, email, password, dateOfBirth, gender }) => async (dispatch, getState) => {
-  console.log(getState(), 'getState');
-  // dispatch(authenticateMainUserStart());
-  console.log(dateOfBirth);
+export const signUp = ({
+  fullname,
+  email,
+  password,
+  dateOfBirth,
+  gender
+}) => async (dispatch) => {
   try {
-
-    const response = await axios.post('/api/users/signup', {
+    const { data: { user, token } } = await axios.post('/api/auth/signup', {
       fullname,
       email,
       password,
       dateOfBirth,
       gender
     });
-    const data = response.data;
-    console.log(response);
-    setTimeout(() => {
-      dispatch(signSuccess(data));
-    }, 10000);
+    dispatch(userRegistrationSuccess(user, token));
   } catch (error) {
-    console.log(error.toJSON());
-    console.log(error.response);
-    if (error.response) {
-      dispatch(signFailure(error.response.data.message));
-    } else {
-      dispatch(signFailure('something went wrong !!!'));
-    }
+    dispatch(userRegistrationSuccessFailure(error));
   }
 }
+
+

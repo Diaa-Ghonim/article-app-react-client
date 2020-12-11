@@ -1,0 +1,21 @@
+@import '../../../../../../ScssVars/';
+
+.svg-holder {
+  flex-grow: 1;
+
+  div {
+
+    // width: fit-content;
+    // cursor: pointer;
+    svg {
+      fill: $color-gray;
+      height: 25px;
+      width: 25px;
+    }
+
+    .svg-fill {
+      // fill: $color-tomato;
+      fill: #ec173f;
+    }
+  }
+}

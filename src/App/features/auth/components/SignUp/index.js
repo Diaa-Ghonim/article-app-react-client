@@ -4,32 +4,31 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Style from './style.module.scss';
 import SvgValidateWarn from '../SvgValidateWarn';
-import GenerateYearOptions from '../../../../shared/GenerateDayOptions'
+import GenerateYearOptions from '../../../../shared/GenerateYearOptions'
 import GenerateMonthOptions from '../../../../shared/GenerateMonthOptions'
 import GenerateDayOptions from '../../../../shared/GenerateDayOptions'
 import { validateEmail, validateFullname, validatePassword } from '../../validation';
 import ShowSignError from '../ShowSignError';
-import { clearSignError, signUp } from '../../actionsCreator';
+import { clearUserRegistrationError, signUp } from '../../actionsCreator';
 
 
 export default function SignUp() {
 
   const dispatch = useDispatch();
 
-  const signErrorState = useSelector(state => state.signError);
-  const { error } = signErrorState;
+  const { error } = useSelector(({ signError }) => (signError));
 
   useEffect(() => {
     let timeOut;
-    if (error.isError) {
+    if (error) {
       timeOut = setTimeout(() => {
-        dispatch(clearSignError());
+        dispatch(clearUserRegistrationError());
       }, 3000);
     }
     return () => {
       clearTimeout(timeOut);
     }
-  }, [error]);
+  }, [dispatch, error]);
 
   const [fullname, setFullname] = useState('')
   const [fullnameError, setFullnameError] = useState('');
@@ -255,7 +254,7 @@ export default function SignUp() {
             </div>
           </div>
           <div>
-            {error.isError ? <ShowSignError errorMsg={error.msg} /> : ''}
+            {error ? <ShowSignError errorMsg={error.msg} /> : ''}
           </div>
           <div>
             <input type='submit' value='Sign Up' />

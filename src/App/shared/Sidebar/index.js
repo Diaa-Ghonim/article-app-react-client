@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { ListOfTopReadingTitles } from '../../features/topReadingArticles';
-import { ListOfBestWritersNames } from '../../features/bestWriters';
+import React from 'react';
+import { ListOfTopReadingTitles } from '../../features/article/topReadingArticles';
+import { ListOfBestWritersNames } from '../../features/user/bestWriters';
 import Styles from './style.module.scss';
 import ErrorBoundary from '../ErrorBoundry';
 

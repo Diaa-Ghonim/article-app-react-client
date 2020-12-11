@@ -1,0 +1,41 @@
+@import "../../../../../ScssVars/";
+
+.common {
+  margin-bottom: 10px;
+  background-color: $color-white;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid $color-gray-light;
+}
+
+input[type=text] {
+  color: red
+}
+
+.best-writers-container {
+  .header {}
+
+  .best-writers-content {
+
+    // border: none;
+    .content {
+      a {
+        color: #337ab7;
+        font-weight: 700;
+      }
+    }
+
+    // div {
+    //   border: none;
+    //   border-radius: 0;
+    //   border-bottom: 1px solid $color-gray-light;
+    // }
+  }
+
+  .showmore {
+    a {
+      color: #ec173f;
+      font-weight: 700;
+    }
+  }
+}

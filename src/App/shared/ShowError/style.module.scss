@@ -1,10 +1,11 @@
-.showError {
+.errorContainer {
+  padding: 15px;
+  width: 100%;
   padding: 10px;
+  background-color: white;
+  border-radius: 2px;
 
   div {
-    color: #333;
-    font-size: 20px;
-    font-weight: bold;
-    text-align: center;
+    padding: 10px;
   }
 }

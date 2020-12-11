@@ -1,0 +1,18 @@
+.followBtn {
+  padding: 10px 20px;
+  // background-color: #13a3c7;
+  background-color: white;
+  color: #13a3c7;
+  border-radius: 20px;
+  font-weight: bold;
+  border: none;
+  line-height: 1;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.2s linear;
+  border: 1px solid #13a3c7;
+  &:hover {
+    background-color: rgb(241, 239, 239);
+    // opacity: 0.6;
+  }
+}

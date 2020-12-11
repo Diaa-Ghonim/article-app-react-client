@@ -1,5 +1,5 @@
 import React from 'react';
-import { TopReadingArticles } from '../../features/topReadingArticles';
+import { TopReadingArticles } from '../../features/article/topReadingArticles';
 
 export default function index() {
   return (

@@ -1,22 +1,24 @@
-import React, { useMemo } from 'react';
-
+import React, { useRef } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import Navbar from '../shared/Navbar';
-import HomePage from '../pages/HomePage';
-import ProfilePage from '../pages/Profile';
-import CreateArticlePage from '../pages/CreateArticle';
-import OneArticlePage from '../pages/ShowArticle';
-import TopReadingPage from '../pages/TopReading';
-import BestWritersPage from '../pages/BestWriters';
-import NotFoundPage from '../pages/NotFound';
-import SignIn from '../pages/SignIn';
-import SignUp from '../pages/SignUp';
-import Loading from '../shared/Loading';
+import Spinner from '../shared/Spinner';
 import { authenticateMainUser } from '../features/auth';
-import Cookie from '../cookie';
+import {
+  Home,
+  Profile,
+  BestWriters,
+  TopReading,
+  CreateArticle,
+  NotFound,
+  ShowArticle,
+  SignIn,
+  SignUp,
+  Search,
+  EditUserInfo
+} from '../pages';
 
-export default function Index() {
+export default () => {
   const dispatch = useDispatch();
   /**
    * use memo call during render method
@@ -24,139 +26,158 @@ export default function Index() {
    * if true dispatch action and change useRef value to false 
    * to prevent dispatch again
    */
-  useMemo(() => dispatch(authenticateMainUser()), [])
+  document.addEventListener('DOMContentLoaded', (evt) => {
+    console.log(evt);
+  })
 
-  const mainUser = useSelector(state => state.mainUser)
-  const { isAuthenticate, isLoading } = mainUser;
+  let booleanRef = useRef(true); /** to dispatch authenticate user */
+  if (booleanRef.current) {
+    dispatch(authenticateMainUser());
+    booleanRef.current = false;
+  }
+
+  const { isAuthenticate, isLoading } = useSelector(({ mainUser }) => (mainUser));
 
   return (
     <>
-      {isLoading ? <Loading /> : <>
-        <Navbar />
+      {
+        isLoading
+          ? <Spinner />
+          : <>
+            <Navbar />
+            <Switch>
+              <Redirect
+                exact
+                from='/'
+                to='/home'
+              />
+              <Route
+                exact
+                strict
+                path='/home'
+                component={Home}
+              />
 
-        <Switch>
-          <Route
-            exact
-            path='/'
-            render={() => {
-              return <Redirect to='/home' />;
-            }}
-          />
-          <Route exact path='/home' component={HomePage} />
-
-          <PrivateRoute
-            exact
-            path='/create-article'
-            isAuthenticate={isAuthenticate}
-            component={CreateArticlePage}
-          />
-          <PrivateRoute
-            exact
-            path='/top-reading'
-            isAuthenticate={isAuthenticate}
-            component={TopReadingPage}
-          />
-
-          <PrivateRoute
-            exact
-            path='/best-writers'
-            isAuthenticate={isAuthenticate}
-            component={BestWritersPage}
-          />
-          <PrivateRouteAuth
-            exact
-            path='/signin'
-            isAuthenticate={isAuthenticate}
-            isLoading={isLoading}
-            component={SignIn}
-          />
-
-
-          <PrivateRouteAuth
-            exact
-            path='/signup'
-            isLoading={isLoading}
-            isAuthenticate={isAuthenticate}
-            component={SignUp}
-          />
-
-
-          <PrivateRoute
-            exact
-            path='/:username'
-            secondParam=''
-            isAuthenticate={isAuthenticate}
-            component={ProfilePage}
-          />
-          <PrivateRoute
-            exact
-            path='/:username/likes'
-            isAuthenticate={isAuthenticate}
-            // render={(props) => <ProfilePage />}
-            component={ProfilePage}
-          />
-          <PrivateRoute
-            exact
-            path='/:username/dislikes'
-            secondParam='dislikes'
-            isAuthenticate={isAuthenticate}
-            component={ProfilePage}
-          />
-          <PrivateRoute
-            exact
-            path='/:username/saves'
-            isAuthenticate={isAuthenticate}
-            component={ProfilePage}
-          />
-          <PrivateRoute
-            exact
-            path='/:username/:articleID'
-            isAuthenticate={isAuthenticate}
-            component={OneArticlePage}
-          />
-          <PrivateRoute
-            path='*'
-            exact
-            isAuthenticate={isAuthenticate}
-            component={NotFoundPage}
-          />
-        </Switch>
-      </>
+              <PrivateRoute
+                exact
+                path='/create-article'
+                isAuthenticate={isAuthenticate}
+                component={CreateArticle}
+              />
+              {/* <PrivateRoute
+                exact
+                path={/\/search\?q=.?/}
+                // path='/search='
+                render={() => {
+                  console.log('hello rednder')
+                }}
+                isAuthenticate={isAuthenticate}
+                component={Search}
+              /> */}
+              <PrivateRoute
+                exact
+                path='/top-reading'
+                isAuthenticate={isAuthenticate}
+                component={TopReading}
+              />
+              <PrivateRoute
+                exact
+                path='/best-writers'
+                isAuthenticate={isAuthenticate}
+                component={BestWriters}
+              />
+              <PrivateRouteAuth
+                exact
+                path='/signin'
+                isAuthenticate={isAuthenticate}
+                isLoading={isLoading}
+                component={SignIn}
+              />
+              <PrivateRouteAuth
+                exact
+                path='/signup'
+                isLoading={isLoading}
+                isAuthenticate={isAuthenticate}
+                component={SignUp}
+              />
+              <PrivateRoute
+                exact
+                path='/:username/edit-user'
+                isAuthenticate={isAuthenticate}
+                component={EditUserInfo}
+              />
+              <PrivateRoute
+                exact
+                strict
+                path='/:username'
+                secondParam=''
+                isAuthenticate={isAuthenticate}
+                component={Profile}
+              />
+              <PrivateRoute
+                exact
+                path='/:username/likes'
+                isAuthenticate={isAuthenticate}
+                component={Profile}
+              />
+              <PrivateRoute
+                exact
+                path='/:username/dislikes'
+                secondParam='dislikes'
+                isAuthenticate={isAuthenticate}
+                component={Profile}
+              />
+              <PrivateRoute
+                exact
+                path='/:username/saves'
+                isAuthenticate={isAuthenticate}
+                component={Profile}
+              />
+              <PrivateRoute
+                exact
+                path='/:username/:articleID'
+                isAuthenticate={isAuthenticate}
+                component={ShowArticle}
+              />
+              <PrivateRoute
+                path='*'
+                exact
+                isAuthenticate={isAuthenticate}
+                component={NotFound}
+              />
+            </Switch>
+          </>
       }
     </>
   );
 }
 
+/** handle all site routes */
 const PrivateRoute = ({ component: Component, isAuthenticate, ...rest }) => {
   return (
     <Route
       {...rest}
-      render={(props) => isAuthenticate === true
-        ? <Component {...props} />
-        : <Redirect to={{ pathname: '/', state: { from: props.location } }} />}
+      render={(props) => { /**props is object from history, location, match, static context*/
+        console.log(props);
+        return isAuthenticate === true
+          ? /\/search\?q=.?/.test(props.location.pathname + props.location.search)
+            ? <Search {...props} />
+            : <Component {...props} />
+          : <Redirect to={{ pathname: '/', state: { from: props.location } }} />
+      }}
     />
   )
 }
 
+/** handle sign in and sign up routes */
 const PrivateRouteAuth = ({ component: Component, isAuthenticate, ...rest }) => {
 
-  if (!isAuthenticate) {
-    return (
-      <Route
-        {...rest}
-        component={Component} />
-    )
-  } else {
-    return (
-      <><Redirect to={{ pathname: '/' }} /></>
-    )
-  }
-  // return (
-  //   <Route
-  //     {...rest}
-  //     render={(props) => isAuthenticate === false
-  //       ? <Component {...props} />
-  //       : <Redirect to={{pathname: '/', state: {from: props.location}}} />}
-  //   />
-  // )
+  return (
+    <Route {...rest} render={(props) => {
+      return !isAuthenticate
+        ? <Component {...props} />
+        : <Redirect to={{ pathname: '/', state: { from: props.location } }} />
+    }} />
+  )
 }
+

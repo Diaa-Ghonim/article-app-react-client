@@ -1,0 +1,106 @@
+@import '../../../../../ScssVars/';
+
+.address {
+  border-bottom: 1px solid $color-gray-lighter;
+  display: flex;
+
+  .name {
+    flex-grow: 1;
+  }
+
+  .dropdownIconContainer {
+    position: relative;
+
+    svg {
+      fill-opacity: 0.7;
+      height: 24px;
+      width: 24px;
+    }
+  }
+
+  b,
+  a {
+    font-size: 16px;
+    font-weight: 700;
+    color: #337ab7;
+  }
+
+  span {
+    color: #6b6b6b;
+  }
+}
+
+.info {
+  border-bottom: 1px solid $color-gray-lighter;
+  padding: 5px;
+
+  .articleDate {
+    text-decoration: underline;
+    font-size: 13px;
+    color: #2d2c2ccf;
+  }
+
+  b,
+  a {
+    font-size: 16px;
+    font-weight: 700;
+    color: #337ab7;
+  }
+
+  span {
+    color: #6b6b6b;
+  }
+}
+
+.dropdown {
+  // width: 189px;
+  width: 200px;
+  min-height: 200px;
+  position: absolute;
+  // padding: 5px;
+  right: 8px;
+  top: 25px;
+  border-radius: 5px;
+  overflow: hidden;
+  background-color: rgba(255, 255, 255, 1);
+  z-index: 4;
+  box-shadow: rgba(101, 119, 134, 0.2) 0px 0px 15px,
+    rgba(101, 119, 134, 0.15) 0px 0px 3px 1px;
+
+  .listContainer {
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+    transition: all.2s;
+    padding: 15px 15px 10px;
+
+    .icon {
+      justify-content: center;
+      margin-right: 10px;
+
+      svg {
+        height: 1.25em;
+        width: 20px;
+        fill: #717171;
+      }
+    }
+
+    .textContainer {
+      flex-grow: 1;
+
+      div {
+        font-weight: 400;
+        font-size: 15px;
+        color: rgb(20, 23, 26);
+        overflow-wrap: break-word;
+        line-height: 1.3125;
+        text-align: left;
+      }
+    }
+
+    &:hover {
+      cursor: pointer;
+      background-color: rgb(247, 247, 247);
+    }
+  }
+}

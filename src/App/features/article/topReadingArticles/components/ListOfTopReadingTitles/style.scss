@@ -1,0 +1,38 @@
+@import '../../../../../ScssVars/';
+
+.common-top-reading {
+  margin-bottom: 10px;
+  background-color: $color-white;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid $color-gray-light;
+}
+
+.border-common {
+  border: none;
+  border-radius: 0%;
+  border-bottom: 1px solid $color-gray-light;
+}
+
+.top-reading-container {
+  .top-reading-content {
+    .content {
+      a {
+        color: #337ab7;
+        font-weight: 700;
+        overflow: hidden;
+        word-break: break-word;
+      }
+    }
+  }
+
+  .showmore {
+    border: none;
+    border-radius: 0%;
+
+    a {
+      color: #ec173f;
+      font-weight: 700;
+    }
+  }
+}

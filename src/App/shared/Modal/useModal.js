@@ -1,22 +1,30 @@
 
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react';
 
 export default function useModal() {
 
-  const [modal, setModal] = useState(false);
+  const [isModal, setIsModal] = useState(false);
   const [modalContent, setModalContent] = useState('');
+  const [modalRoute, setModalRoute] = useState('');
 
-  const handleModal = () => {
-    setModal(!modal)
+  const toggleModal = () => {
+    setIsModal(!isModal)
   }
 
-  const handleModalContent = (content) => {
-    if (content) {
-      setModalContent(content);
-    }
+  const hideModal = () => {
+    setIsModal(false);
   }
 
+  const addModalContent = (content) => {
+    if (content) setModalContent(content);
+  }
 
-  return { modal, handleModal, modalContent, handleModalContent };
+  const addModalRoute = (route) => {
+    if (route) setModalRoute(route);
+  }
+
+  return {
+    isModal, toggleModal, hideModal, modalContent, addModalContent, modalRoute, addModalRoute
+  };
 }

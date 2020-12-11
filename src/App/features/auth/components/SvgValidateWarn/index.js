@@ -2,14 +2,6 @@
 
 import React from 'react';
 
-const style = {
-  fill: 'red',
-  height: '24px',
-  width: '24px',
-  position: 'absolute',
-  top: '39px',
-  right: '5px',
-}
 
 export default (props) => {
   return (

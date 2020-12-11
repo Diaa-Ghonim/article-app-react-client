@@ -14,5 +14,7 @@ export const updateItemInArray = (array, itemId, updateItemCallback) => {
 };
 
 export function filterArrayById(array, id) {
-  return array.filter(item => item.id === id);
+  return array.filter(item => {
+    return item.id !== id
+  });
 };

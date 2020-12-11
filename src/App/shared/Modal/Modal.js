@@ -1,61 +1,72 @@
 
 
-import React, { useContext, useEffect, useLayoutEffect, useMemo } from 'react';
+import React, { useContext, useEffect } from 'react';
 import ReactDOM from 'react-dom';
+import { useHistory } from 'react-router-dom';
 import { modalContext } from './ModalProvider';
 import Style from './style.module.scss';
 
-export default function Modal() {
+export default function Modal({ modalRoute }) {
 
+  const history = useHistory();
   const {
-    modal,
-    handleModal,
+    // isModal,
+    toggleModal,
+    // hideModal,
     modalContent
   } = useContext(modalContext);
 
-  useMemo(() => {
-    console.log('lay out');
-    if (modal) {
-      document.body.style.marginRight = '17px';
-      document.body.style.overflowY = 'hidden';
-    } else {
-      document.body.style.marginRight = '0px';
-      document.body.style.overflowY = 'scroll';
-
+  function onHideModal(evt) {
+    // console.log(evt);
+    if (window.innerWidth <= 400) {
+      if (modalRoute) {
+        toggleModal(); /** also you can use hideModal */
+        history.push(modalRoute);
+      }
     }
+  }
 
-  }, [modal])
+  useEffect(() => {
+    window.addEventListener('resize', onHideModal);
+    return () => {
+      window.removeEventListener('resize', onHideModal);
+    }
+  }, []);
 
-  if (modal) {
-    return ReactDOM.createPortal(
-      <div className={Style.teet}>
-        <div className={Style.modalOverLay} onClick={handleModal} >
+  // if (isModal) {
+  return ReactDOM.createPortal(
+    <div className={Style['modal-wrapper']} >
+      <div className={Style['modal-container']} onClick={toggleModal} >
+        <div className={Style['modal-content-wrapper']}  >
           <div
-            className={Style.modalWrapper}
-            onClick={(e) => { /**console.log(e.target); */ e.stopPropagation() }}>
+            className={Style['close-modal-container']}>
 
+            <button
+              className={Style['close-button']}
+              onClick={toggleModal} >
+              close
+              </button>
+
+          </div>
+
+          <div
+            className={Style['madal-content-container']}
+          >
             <div
-              className={Style.closeModalContainer}>
+              className={Style['modal-content']}
+              onClick={(e) => { /**console.log(e.target); */ e.stopPropagation() }}
 
-              <button
-                className={Style.closeButton}
-                onClick={handleModal} >
-                close
-            </button>
-
-            </div>
-
-            <div>
+            >
               {modalContent}
             </div>
 
           </div>
-
         </div>
-      </div>,
-      document.querySelector('#modal-root')
-    )
-  } else {
-    return ''
-  }
+      </div>
+    </div>,
+    document.querySelector('#root')
+  )
+  // } else {
+  //   return ''
+  // }
 }

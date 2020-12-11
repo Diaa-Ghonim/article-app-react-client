@@ -1,0 +1,149 @@
+@import '../../../../../ScssVars/';
+
+.user-edit-wrapper {
+  display: flex;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
+  min-width: 400px;
+
+  form {
+    .field-wraper {
+      padding: 15px 0 0;
+
+      .show-edit-user-error {
+        background-color: red;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-weight: bold;
+      }
+    }
+
+    .field-wraper:first-of-type {
+      border-bottom: 1px solid $color-gray-lighter;
+      position: relative;
+      padding-bottom: 10px;
+
+      .preview-image-wrapper {
+        height: 120px;
+        width: 120px;
+        border-radius: 50%;
+        padding: 5px;
+        border: 2px solid #eee;
+
+        .preview-image {
+          overflow: hidden;
+          background-position: center;
+          background-size: cover;
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+          background-color: $color-black-dotone-opacity;
+        }
+      }
+
+      .input-file-wrapper {
+        position: absolute;
+        left: 40px;
+        top: 54px;
+        width: 40px;
+        height: 40px;
+
+        .file-label {
+          background-color: $color-black-dotone-opacity;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 5px;
+          border-radius: 50%;
+          width: 40px;
+          height: 40px;
+          cursor: pointer;
+          z-index: 5;
+          border-radius: 50%;
+          cursor: pointer;
+          z-index: 5;
+
+          svg {
+            fill: white;
+            height: 25px;
+            width: 25px;
+          }
+        }
+
+        input[type='file'] {
+          width: 0px;
+          height: 0px;
+        }
+      }
+    }
+
+    label {
+      color: $color-black-light;
+      padding: 0 0 10px;
+      display: block;
+      text-align: left;
+    }
+
+    .birth {
+      .select-container {
+        display: flex;
+
+        select {
+          outline: none;
+          padding: 5px 8px;
+          border-radius: 3px;
+          background-color: white;
+          border-color: $color-black-dotthree-opacity;
+          margin: 0 5px 0 0;
+          width: 100%;
+        }
+      }
+
+
+    }
+
+    input[type='text'],
+    textarea {
+      // max-width: 300px;
+      width: 100%;
+      border: 1px solid $color-black-dotthree-opacity;
+      outline: none;
+      caret-color: black;
+      padding: 8px;
+      border-radius: 5px;
+      color: $color-black-light;
+    }
+
+    textarea {
+      resize: none;
+      height: 60px;
+    }
+
+    .submit {
+      border-radius: 5px;
+      padding: 10px;
+      background-color: #337ab7;
+      font-weight: bold;
+      width: 100%;
+      border: none;
+      outline: none;
+      color: white;
+    }
+
+    @media screen and (max-width: $break-medium) {
+      flex-grow: 0.6;
+    }
+
+
+  }
+
+  @media screen and (max-width: $break-medium) {
+    min-width: 320px;
+  }
+}

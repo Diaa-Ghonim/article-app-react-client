@@ -1,28 +1,18 @@
 
 import React, { useMemo } from 'react';
-import Loading from '../../shared/Loading';
+import Spinner from '../Spinner';
 import ListOfArticles from '../../shared/ListOfArticles';
 import ShowError from '../ShowError';
-import TryLoadingAgain from '../TryLoadingAgain';
+
 
 
 export default ({ articles, isLoading, error, tryLoadingAgain }) => {
-  return useMemo(() => (
-    <div>
-      {isLoading ? (
-        <Loading />
-      ) : error.isError ? (
-        <>
-          <ShowError errorMsg={error.msg}
-          />
-          <TryLoadingAgain tryLoadingAgain={tryLoadingAgain}
-          />
-        </>
-      ) : (
-            <>
-              <ListOfArticles articles={articles} />
-            </>
-          )}
-    </div>
-  ), [articles, isLoading, error, tryLoadingAgain])
+  // console.log('one ', isLoading);
+  return useMemo(() => {
+    if (isLoading) return <div><Spinner /></div>
+    if (error) return <div><ShowError error={error} tryLoadingAgain={tryLoadingAgain} /></div>
+    return <div><ListOfArticles articles={articles} /></div>
+
+  }, [articles, isLoading, error, tryLoadingAgain]);
+
 }

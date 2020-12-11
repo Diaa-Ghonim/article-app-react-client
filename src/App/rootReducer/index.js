@@ -1,20 +1,21 @@
 
 import { combineReducers } from 'redux'
-import { feedReducer } from '../features/feedArticles';
-import { bestWritersReducer } from '../features/bestWriters';
-import { mainUserReducer } from '../features/mainUser';
-import { articleReducer } from '../features/showArticle';
-import { topReadingArticlesReducer } from '../features/topReadingArticles';
-import { userReducer } from '../features/user';
-import { userArticlesReducer } from '../features/userArticles';
-import { userLikedArticlesReducer } from '../features/userLikedArticles';
-import { userDislikedArticlesReducer } from '../features/userDislikedArticles';
-import { userSavedArticlesReducer } from '../features/userSavedArticles';
-import { articleActionErrorReducer } from '../shared/Article';
+import { bestWritersReducer } from '../features/user/bestWriters';
+import { mainUserReducer } from '../features/user/mainUser';
+import { articleReducer } from '../features/article/showArticle';
+import { topReadingArticlesReducer } from '../features/article/topReadingArticles';
+import { userReducer } from '../features/user/user';
+import { userArticlesReducer } from '../features/article/userArticles';
+import { userLikedArticlesReducer } from '../features/article/userLikedArticles';
+import { userDislikedArticlesReducer } from '../features/article/userDislikedArticles';
+import { userSavedArticlesReducer } from '../features/article/userSavedArticles';
+import { articleActionErrorReducer } from '../features/article/Article';
 import { signErrorReducer } from '../features/auth';
+import { searchReducer } from '../features/search';
+import { feedReducer } from '../features/article/feedArticles';
+
 
 export default combineReducers({
-  feed: feedReducer,
   article: articleReducer,
   topReading: topReadingArticlesReducer,
   user: userReducer,
@@ -25,5 +26,8 @@ export default combineReducers({
   userSavedArticles: userSavedArticlesReducer,
   mainUser: mainUserReducer,
   articleActionError: articleActionErrorReducer,
-  signError: signErrorReducer
+  signError: signErrorReducer,
+  search: searchReducer,
+  feed: feedReducer,
+
 })

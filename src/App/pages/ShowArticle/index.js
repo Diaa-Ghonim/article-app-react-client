@@ -1,6 +1,6 @@
 
 import React from 'react'
-import { ShowArticle } from '../../features/showArticle';
+import { ShowArticle } from '../../features/article/showArticle';
 export default function index(props) {
   return (
     <>

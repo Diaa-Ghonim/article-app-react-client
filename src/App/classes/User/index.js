@@ -7,7 +7,7 @@ export default class index {
 
 
   constructor(user) {
-
+    // console.log(user, 'user');
     this._id = user._id;
     this._name = user._name;
     this._age = user._age;
@@ -16,8 +16,10 @@ export default class index {
     this._password = user._password;
     this._profImage = user._profImage;
     this._bio = user._bio;
-    this._birthDay = user._birthDay;
+    this._dateOfBirth = user._dateOfBirth;
     this.rate = user._rate;
+    this._followers = user._followers;
+    this._following = user._following;
   }
 
   get id() {
@@ -80,12 +82,12 @@ export default class index {
     this._bio = value;
   }
 
-  get birthDay() {
-    return this._birthDay;
+  get dateOfBirth() {
+    return this._dateOfBirth;
   }
 
-  set birthDay(value) {
-    this._birthDay = value;
+  set dateOfBirth(value) {
+    this._dateOfBirth = value;
   }
 
   set rate(value) {
@@ -94,5 +96,13 @@ export default class index {
 
   get rate() {
     return this._rate;
+  }
+
+  get followers() {
+    return this._followers;
+  }
+
+  get following() {
+    return this._following;
   }
 }

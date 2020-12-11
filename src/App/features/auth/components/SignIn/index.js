@@ -7,13 +7,13 @@ import Style from './style.module.scss';
 import SvgValidateWarn from '../SvgValidateWarn';
 import ShowSignError from '../ShowSignError';
 import { validateEmail, validatePassword } from '../../validation';
-import { clearSignError, signIn } from '../../actionsCreator';
+import { clearUserRegistrationError, signIn, resetAuthSuccess } from '../../actionsCreator';
 
 
 export default () => {
 
   const dispatch = useDispatch();
-  const { handleModal } = useContext(modalContext);
+  const { toggleModal } = useContext(modalContext);
 
   const [email, setEmail] = useState('');
   const [emailError, setEmailError] = useState('');
@@ -21,20 +21,27 @@ export default () => {
   const [password, setPassword] = useState('')
   const [passwordError, setPasswordError] = useState('');
 
-  const signErrorState = useSelector(state => state.signError);
-  const { error } = signErrorState;
-  console.log(error, 'error');
+  const { error, authSuccess } = useSelector(({ signError }) => (signError));
+
+  useEffect(() => {
+    if (authSuccess) {
+      dispatch(resetAuthSuccess());
+      toggleModal();
+
+    }
+  }, [authSuccess]);
+
   useEffect(() => {
     let timeOut;
-    if (error.isError) {
+    if (error) {
       timeOut = setTimeout(() => {
-        dispatch(clearSignError());
+        dispatch(clearUserRegistrationError());
       }, 3000);
     }
     return () => {
       clearTimeout(timeOut);
     }
-  }, [error.isError]);
+  }, [error]);
 
 
   const handleSubmit = (e) => {
@@ -101,7 +108,7 @@ export default () => {
             {passwordError ? <SvgValidateWarn className={Style.svgWarn} /> : ''}
           </div>
           <div>
-            {error.isError ? <ShowSignError errorMsg={error.msg} /> : ''}
+            {error ? <ShowSignError errorMsg={error.msg} /> : ''}
 
           </div>
           <div>
@@ -115,7 +122,7 @@ export default () => {
               className={Style.createAccount}
               role='input'
               to='/signup'
-              onClick={() => handleModal()}
+              onClick={() => toggleModal()}
             >
               Sign Up
             </NavLink>

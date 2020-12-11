@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { NavLink, Route, Switch } from 'react-router-dom';
 import Style from './style.module.scss';
-import { UserArticles } from '../../../features/userArticles';
-import { UserLikedArticles } from '../../../features/userLikedArticles';
-import { UserDislikedArticles } from '../../../features/userDislikedArticles';
-import { UserSavedArticles } from '../../../features/userSavedArticles';
+import { UserArticles } from '../../../features/article/userArticles';
+import { UserLikedArticles } from '../../../features/article/userLikedArticles';
+import { UserDislikedArticles } from '../../../features/article/userDislikedArticles';
+import { UserSavedArticles } from '../../../features/article/userSavedArticles';
 
 
 export default class index extends Component {
