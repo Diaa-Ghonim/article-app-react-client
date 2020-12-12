@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Editor } from '@tinymce/tinymce-react';
 import { addArticle } from '../actionsCreator';
-import axios from 'axios';
+import axios from '../../../../util/axiosConfig';
 import Style from './style.module.scss';
 
 
@@ -63,15 +63,15 @@ export class index extends Component {
             height: 300,
             menubar: true,
             file_picker_types: 'image file',
-            images_upload_base_path: `${process.env.REACT_APP_API_URL}/images/`,
-            images_upload_url: `${process.env.REACT_APP_API_URL}/images`,
+            images_upload_base_path: `${process.env.REACT_APP_API_URL}/api/images/`,
+            images_upload_url: `${process.env.REACT_APP_API_URL}/api/images`,
             images_upload_credentials: true,
             images_upload_handler: function (blobInfo, success, failure) {
               let data = new FormData();
               data.append('file', blobInfo.blob(), blobInfo.filename());
               axios.post('/api/images/upload-images', data)
                 .then(function (res) {
-                  console.log(res);
+                  // console.log(res);
                   success(`${process.env.REACT_APP_API_URL}/images/${res.data.location}`);
                 })
                 .catch(function (err) {

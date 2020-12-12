@@ -22,8 +22,15 @@ export const resetAuthSuccess = createAction(RESET_AUTH_SUCCESS);
 export const authenticateMainUser = () => async (dispatch) => {
   dispatch(authenticateMainUserStart());
   try {
-    const { data: user } = await axios.get('/api/users/auth');
-    dispatch(authenticateMainUserSuccess(user));
+    // console.log(axios.defaults);
+    // const { data: user } = await axios.get('/api/users/auth');
+    const response = await fetch('https://article-app-server.herokuapp.com/api/users/auth');
+    console.log(response);
+    const data = await response.json();
+    if (!response.ok) throw new Error(data);
+
+    console.log(data, 'from auth');
+    dispatch(authenticateMainUserSuccess(data));
   } catch (error) {
     dispatch(authenticateMainUserFailure(error));
   }

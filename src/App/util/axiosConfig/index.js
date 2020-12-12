@@ -7,6 +7,8 @@ const { AUTHENTICATE_MAIN_USER_FAILURE } = authActionsType
 
 const axios = _axios.create({
     baseURL: process.env.REACT_APP_API_URL,
+    proxy: process.env.REACT_APP_API_URL,
+    withCredentials: true,
 })
 axios.interceptors.request.use(config => {
     // console.log(config);

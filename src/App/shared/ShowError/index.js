@@ -4,7 +4,7 @@ import TryLoadingAgain from './components/TryLoadingAgain';
 import { ErrorMessage } from './components/errorMessage';
 
 export default function index({ error, tryLoadingAgain }) {
-  console.log(error, tryLoadingAgain, '=> try again and error');
+  // console.log(error, tryLoadingAgain, '=> try again and error');
   if (error.status && error.status === 404) {
     return (
       <div className={Style.errorContainer}>

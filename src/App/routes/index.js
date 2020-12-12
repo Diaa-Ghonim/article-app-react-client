@@ -26,9 +26,6 @@ export default () => {
    * if true dispatch action and change useRef value to false 
    * to prevent dispatch again
    */
-  document.addEventListener('DOMContentLoaded', (evt) => {
-    console.log(evt);
-  })
 
   let booleanRef = useRef(true); /** to dispatch authenticate user */
   if (booleanRef.current) {
@@ -158,7 +155,6 @@ const PrivateRoute = ({ component: Component, isAuthenticate, ...rest }) => {
     <Route
       {...rest}
       render={(props) => { /**props is object from history, location, match, static context*/
-        console.log(props);
         return isAuthenticate === true
           ? /\/search\?q=.?/.test(props.location.pathname + props.location.search)
             ? <Search {...props} />
