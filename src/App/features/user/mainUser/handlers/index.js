@@ -1,7 +1,15 @@
 import { Cookie } from "../../../../libs/cookie";
 import { parseError } from "../../../../util/parseError";
-import { AUTHENTICATE_MAIN_USER, SIGN_OUT, USER_REGISTRATION } from "../../../auth/actionsType";
-import { CLEAR_USER_EDIT_INFO_ERROR, MAIN_USER_FOLLOW, MAIN_USER_UNFOLLOW, USER_EDIT_INFO } from "../actionTypes";
+import {
+  AUTHENTICATE_MAIN_USER,
+  SIGN_OUT,
+  USER_REGISTRATION
+} from "../../../auth/actionsType";
+import {
+  CLEAR_USER_EDIT_INFO_ERROR,
+  MAIN_USER_FOLLOW, MAIN_USER_UNFOLLOW,
+  USER_EDIT_INFO
+} from "../actionTypes";
 
 
 export const mainUserHandlers = {
@@ -78,6 +86,7 @@ export const mainUserHandlers = {
 
   [MAIN_USER_FOLLOW.FAILURE]: (state, { payload: { error } }) => {
     console.log('follow fail');
+    return { ...state }
   },
 
   [MAIN_USER_UNFOLLOW.SUCCESS]: (state, { payload: { unfollowedUser } }) => {
@@ -93,6 +102,8 @@ export const mainUserHandlers = {
   },
   [MAIN_USER_UNFOLLOW.FAILURE]: (state, { payload: { error } }) => {
     console.log('unfollow fail');
+    return { ...state }
+
   },
 
 

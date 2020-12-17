@@ -68,11 +68,12 @@ export class index extends Component {
             images_upload_credentials: true,
             images_upload_handler: function (blobInfo, success, failure) {
               let data = new FormData();
-              data.append('file', blobInfo.blob(), blobInfo.filename());
+              data.append('image', blobInfo.blob(), blobInfo.filename());
               axios.post('/api/images/upload-images', data)
                 .then(function (res) {
                   // console.log(res);
-                  success(`${process.env.REACT_APP_API_URL}/images/${res.data.location}`);
+                  // success(`${process.env.REACT_APP_API_URL}/images/${res.data.location}`);
+                  success(res.data.location);
                 })
                 .catch(function (err) {
                   failure('HTTP Error: ' + err.message);

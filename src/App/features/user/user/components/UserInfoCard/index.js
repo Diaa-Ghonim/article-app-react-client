@@ -25,6 +25,7 @@ export default ({ user }) => {
 
 
   const isFollowing = mainUser.user.following.find(followed => followed.username === user.username);
+  const isFollower = mainUser.user.followers.find(follower => follower.username === user.username);
   // const label = isFollowing ? 'Following' : 'Follow';
   // const onFollow = (e) => {
   //   isFollowing ? dispatch(unfollowUser(user.username)) : dispatch(followUser(user.username))
@@ -36,7 +37,8 @@ export default ({ user }) => {
           <div className='user-image'>
             <div>
               <div
-                style={{ backgroundImage: `url(${process.env.REACT_APP_API_URL}/images/${user.profImage})` }}
+                // style={{ backgroundImage: `url(${process.env.REACT_APP_API_URL}/images/${user.profImage})` }}
+                style={{ backgroundImage: `url(${user.profImage})` }}
               ></div>
             </div>
           </div>
@@ -52,19 +54,31 @@ export default ({ user }) => {
                   </div>
                 </div>
               ) : (
-                  <div style={{ padding: '10px', display: 'flex', justifyContent: 'center' }}>
-                    {isFollowing ? (
-                      <UnfollowBtn
-                        unfollowCallback={() => dispatch(unfollowUser(user.username))}
-                      // label={label}
-                      />
-                    ) : (
-                        <FollowBtn
-                          followCallback={() => dispatch(followUser(user.username))}
-                        // label={label}
-                        />
-                      )}
-                  </div>
+                  <>
+                    <div style={{ padding: '10px', display: 'flex', justifyContent: 'center' }}>
+                      {
+                        isFollowing ? (
+                          <UnfollowBtn
+                            unfollowCallback={() => dispatch(unfollowUser(user.username))}
+                          // label={label}
+                          />
+                        ) : (
+                            <FollowBtn
+                              followCallback={() => dispatch(followUser(user.username))}
+                            // label={label}
+                            />
+                          )
+                      }
+
+                    </div>
+                    <div>
+                      {
+                        isFollower ? (
+                          <span>followes you</span>
+                        ) : ''
+                      }
+                    </div>
+                  </>
                 )
             }
           </div>

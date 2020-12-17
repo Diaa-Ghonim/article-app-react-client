@@ -1,8 +1,9 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import './style.scss';
 import ReactHtmlParser from 'react-html-parser';
+import { useHistory } from 'react-router-dom';
 
-export default function Index({ article: { content } }) {
+export default function Index({ article: { id, content } }) {
 
   const [isShowmore, setIsShowmore] = useState(false);
   const [isArticleLong, setIsArticleLong] = useState(false);
@@ -20,7 +21,16 @@ export default function Index({ article: { content } }) {
     },
     [],
   );
+  const { location: { pathname } } = useHistory();
 
+  useEffect(() => {
+    if (pathname.indexOf(id) > -1) {
+      console.log('indexof');
+      setIsArticleLong(false);
+      setIsShowmore(true);
+    }
+
+  }, [])
   return (
     <>
       <div className='article-content' >

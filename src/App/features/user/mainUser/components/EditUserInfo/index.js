@@ -11,7 +11,8 @@ import { editUserInfo } from '../..';
 export default () => {
   const dispatch = useDispatch();
   const { user, userEditInfoError } = useSelector(({ mainUser }) => (mainUser));
-  let src = `${process.env.REACT_APP_API_URL}/images/${user.profImage}`;
+  // let src = `${process.env.REACT_APP_API_URL}/images/${user.profImage}`;
+  let src = user.profImage;
 
   let userBirthMonth = user.dateOfBirth.birthMonth.charAt(0).toUpperCase() + user.dateOfBirth.birthMonth.slice(1)
   const [fullname, setFullname] = useState(user.name);
@@ -20,7 +21,7 @@ export default () => {
   const [birthMonth, setBirthMonth] = useState(userBirthMonth);
   const [birthYear, setBirthYear] = useState(user.dateOfBirth.birthYear);
   const [file, setFile] = useState(null);
-  const [isError, setIsError] = useState(false);
+  const [isError, setIsError] = useState('');
 
   const uploadImageInput = useRef(null);
   const previewImage = useRef(null);
@@ -33,7 +34,7 @@ export default () => {
     if (user.username && fullname && birthDay && birthMonth && birthYear) {
       dispatch(editUserInfo(form));
     } else {
-      setIsError(true);
+      setIsError('please fill all fields');
     }
 
   }
@@ -55,7 +56,8 @@ export default () => {
     let timeOut;
     if (isError) {
       timeOut = setTimeout(() => {
-        setIsError(false);
+        console.log('reset error');
+        setIsError('');
       }, 3000);
     }
     return () => {
@@ -65,7 +67,7 @@ export default () => {
 
   useEffect(() => { /** error from server and you can handle message also but i'm not empty now */
     if (userEditInfoError) {
-      setIsError(true);
+      setIsError(userEditInfoError.msg);
     }
   }, [userEditInfoError]);
 
@@ -146,7 +148,7 @@ export default () => {
             {
               isError && (
                 <div className="show-edit-user-error">
-                  <p>please fill all fields</p>
+                  <p>{isError}</p>
                 </div>
               )
             }

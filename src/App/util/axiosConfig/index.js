@@ -2,13 +2,13 @@ import _axios from 'axios';
 import { Cookie } from '../../libs/cookie';
 import { store } from '../../store';
 import { authActionsType } from '../../features/auth';
-const { AUTHENTICATE_MAIN_USER_FAILURE } = authActionsType
+const { AUTHENTICATE_MAIN_USER } = authActionsType
 
 
 const axios = _axios.create({
     baseURL: process.env.REACT_APP_API_URL,
     proxy: process.env.REACT_APP_API_URL,
-    withCredentials: true,
+    // withCredentials: true,
 })
 axios.interceptors.request.use(config => {
     // console.log(config);
@@ -33,8 +33,8 @@ axios.interceptors.response.use(function (response) {
     // Do something with response error
     if (error.response && (error.response.status === 401 || error.response.status === 403)) {
         store.dispatch({
-            type: AUTHENTICATE_MAIN_USER_FAILURE,
-            payload: error,
+            type: AUTHENTICATE_MAIN_USER.FAILURE,
+            payload: { error },
         });
     }
     return Promise.reject(error);

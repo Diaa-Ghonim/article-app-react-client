@@ -27,7 +27,7 @@ function ModalProvider({ children }) {
     document.body.style.overflowY = 'scroll';
 
   }
-
+  console.log(value)
   // }, [isModal]);
   return (
     <Provider value={value}>

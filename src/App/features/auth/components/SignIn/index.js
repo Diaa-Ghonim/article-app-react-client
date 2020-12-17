@@ -7,7 +7,7 @@ import Style from './style.module.scss';
 import SvgValidateWarn from '../SvgValidateWarn';
 import ShowSignError from '../ShowSignError';
 import { validateEmail, validatePassword } from '../../validation';
-import { clearUserRegistrationError, signIn, resetAuthSuccess } from '../../actionsCreator';
+import { clearUserRegistrationError, signIn } from '../../actionsCreator';
 
 
 export default () => {
@@ -21,15 +21,15 @@ export default () => {
   const [password, setPassword] = useState('')
   const [passwordError, setPasswordError] = useState('');
 
-  const { error, authSuccess } = useSelector(({ signError }) => (signError));
-
+  const { error } = useSelector(({ signError }) => (signError));
+  const { isAuthenticate } = useSelector(({ mainUser }) => (mainUser));
   useEffect(() => {
-    if (authSuccess) {
-      dispatch(resetAuthSuccess());
+    if (isAuthenticate) {
+      // dispatch(resetAuthSuccess());
       toggleModal();
 
     }
-  }, [authSuccess]);
+  }, [isAuthenticate]);
 
   useEffect(() => {
     let timeOut;

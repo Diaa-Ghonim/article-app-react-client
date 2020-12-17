@@ -59,19 +59,17 @@ export default class index extends Component {
         <div className='articles-holder'>
           <Switch>
             <Route exact path={`/${username}`}>
-              <h3>Please select a topic 1.</h3>
               <UserArticles username={username} />
             </Route>
             <Route path={`/${username}/likes`}>
-              <h3>Please select a topic 2.</h3>
               <UserLikedArticles username={username} />
             </Route>
             <Route path={`/${username}/dislikes`}>
-              <h3>Please select a topic 3.</h3>
+              {/* <h3>Please select a topic 3.</h3> */}
               <UserDislikedArticles username={username} />
             </Route>
             <Route path={`/${username}/saves`}>
-              <h3>Please select a topic 4.</h3>
+              {/* <h3>Please select a topic 4.</h3> */}
               <UserSavedArticles username={username} />
             </Route>
           </Switch>

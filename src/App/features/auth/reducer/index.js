@@ -17,16 +17,16 @@ export const signErrorReducer = (state = initialState, { type, payload }) => {
         ...state,
         error: parseError(payload.error)
       }
-    case USER_REGISTRATION.SUCCESS:
-      return {
-        ...state,
-        authSuccess: true
-      }
-    case RESET_AUTH_SUCCESS:
-      return {
-        ...state,
-        authSuccess: false
-      }
+    // case USER_REGISTRATION.SUCCESS:
+    //   return {
+    //     ...state,
+    //     authSuccess: true
+    //   }
+    // case RESET_AUTH_SUCCESS:
+    //   return {
+    //     ...state,
+    //     authSuccess: false
+    //   }
     case CLEAR_USER_REGISTRATION_ERROR:
       return {
         ...state,

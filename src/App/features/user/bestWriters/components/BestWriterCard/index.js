@@ -21,7 +21,8 @@ export default ({ bestWriter }) => {
               <NavLink to={`/${bestWriter.username}`}>
                 <div
                   className={Style.userImage}
-                  style={{ backgroundImage: `url(${process.env.REACT_APP_API_URL}/images/${bestWriter.profImage})` }}
+                  // style={{ backgroundImage: `url(${process.env.REACT_APP_API_URL}/images/${bestWriter.profImage})` }}
+                  style={{ backgroundImage: `url(${bestWriter.profImage})` }}
                 >
                 </div>
               </NavLink>
