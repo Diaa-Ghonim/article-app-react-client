@@ -1,4 +1,3 @@
-
 import { createReducer } from '../../../../util/createReducer';
 import { userLikedArticlesHandler } from '../handlers';
 import { handlerActionsForArrayOfArticles } from '../../Article/articleActionsHandler';
@@ -11,5 +10,6 @@ export const initialState = {
 };
 
 export const userLikedArticlesReducer = createReducer(initialState, {
-  ...userLikedArticlesHandler, ...handlerActionsForArrayOfArticles
+  ...userLikedArticlesHandler,
+  ...handlerActionsForArrayOfArticles,
 });

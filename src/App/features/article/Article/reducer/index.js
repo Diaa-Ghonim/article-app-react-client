@@ -1,4 +1,3 @@
-
 // import {
 //   DELETE_ARTICLE,
 //   LIKE_ARTICLE,
@@ -11,20 +10,16 @@
 // } from '../actionTypes';
 // import { parseError } from '../../../../util/parseError';
 
-import { createReducer } from "../../../../util/createReducer";
-import { handlerErrorActionsForArticle } from "../articleActionsHandler"
+import { createReducer } from '../../../../util/createReducer';
+import { handlerErrorActionsForArticle } from '../articleActionsHandler';
 
 const intialState = {
   articleID: '',
-  error: null
-}
-export const articleActionErrorReducer = createReducer(
-  intialState, { ...handlerErrorActionsForArticle }
-);
-
-
-
-
+  error: null,
+};
+export const articleActionErrorReducer = createReducer(intialState, {
+  ...handlerErrorActionsForArticle,
+});
 
 // export const articleActionErrorReducer = (state = intialState, action) => {
 //   switch (action.type) {

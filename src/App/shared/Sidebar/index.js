@@ -9,13 +9,11 @@ export default (props) => {
     <div className={Styles.sidebarContent}>
       <ErrorBoundary>
         <ListOfTopReadingTitles />
-
       </ErrorBoundary>
 
       <ErrorBoundary>
         <ListOfBestWritersNames />
       </ErrorBoundary>
-
     </div>
   );
-}
+};

@@ -6,7 +6,7 @@ export default {
     return {
       ...state,
       isLoading: true,
-    }
+    };
   },
   [GET_USER.SUCCESS]: (state, { payload: { user } }) => {
     return {
@@ -14,7 +14,7 @@ export default {
       user: user,
       isLoading: false,
       error: null,
-      isFetched: true
+      isFetched: true,
     };
   },
 
@@ -23,9 +23,6 @@ export default {
       ...state,
       isLoading: false,
       error: parseError(error),
-
-    }
-  }
-
-}
-
+    };
+  },
+};

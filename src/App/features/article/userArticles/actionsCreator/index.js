@@ -5,7 +5,10 @@ import { createAction } from '../../../../util/createActionsHelpers';
 /**------------------------ actions creator --------------------------------*/
 
 const getUserArticlesLoadingStart = createAction(GET_USER_ARTICLES.LOADING);
-const getUserArticlesSuccess = createAction(GET_USER_ARTICLES.SUCCESS, 'articles');
+const getUserArticlesSuccess = createAction(
+  GET_USER_ARTICLES.SUCCESS,
+  'articles'
+);
 const getUserArticlesFailure = createAction(GET_USER_ARTICLES.FAILURE, 'error');
 
 /**-------------------------- get user articles ------------------------------- */

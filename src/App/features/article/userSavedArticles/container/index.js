@@ -4,17 +4,16 @@ import { getUserSavedArticles } from '../actionsCreator';
 import ShowListArticles from '../../../../shared/ShowListOfArticles';
 import { getUserDislikedArticles } from '../../userDislikedArticles/actionsCreator';
 
-
 export default React.memo((props) => {
   const { username } = props;
   const dispatch = useDispatch();
-  const userSavedArticlesState = useSelector(state => state.userSavedArticles);
+  const userSavedArticlesState = useSelector(
+    (state) => state.userSavedArticles
+  );
   const { articles, isLoading, error } = userSavedArticlesState;
-
 
   useEffect(() => {
     dispatch(getUserSavedArticles(username));
-
   }, [dispatch, username]);
 
   return (
@@ -24,5 +23,5 @@ export default React.memo((props) => {
       error={error}
       tryLoadingAgain={() => getUserDislikedArticles(username)}
     />
-  )
-})
+  );
+});

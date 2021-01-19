@@ -34,7 +34,6 @@ export const NavbarWrapper = styled.div`
 `;
 
 export const NavbarContainer = styled.div`
-
   background: white;
   box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
 `;
@@ -57,7 +56,6 @@ export const SearchFormContainer = styled.div`
   height: 100%;
   display: flex;
   align-items: center;
-  
 `;
 
 export const Options = styled.div`
@@ -67,16 +65,13 @@ export const Options = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  
 `;
 export const ShowDropdown = styled.div`
   display: flex;
   justify-content: flex-end;
   padding-right: 15px;
-  
 `;
-export const DropdownContainer = styled.div`
-`;
+export const DropdownContainer = styled.div``;
 export const Svg = styled.svg`
   display: block;
   height: 30px;

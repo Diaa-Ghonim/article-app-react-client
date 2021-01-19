@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 
@@ -6,12 +5,11 @@ import Style from '../style.module.scss';
 import Dropdown from '../Dropdown';
 
 export default ({ article }) => {
-
   const [isDropped, setIsDropped] = useState(false);
   let dropdown = useRef();
   let dropdownIconContainer = useRef();
 
-  const { isAuthenticate } = useSelector(state => state.mainUser);
+  const { isAuthenticate } = useSelector((state) => state.mainUser);
 
   useEffect(() => {
     if (isDropped) {
@@ -20,7 +18,7 @@ export default ({ article }) => {
 
     return () => {
       document.removeEventListener('click', hideDropdown);
-    }
+    };
   }, [isDropped]);
 
   const hideDropdown = (e) => {
@@ -37,22 +35,26 @@ export default ({ article }) => {
     ) {
       setIsDropped(false);
     }
-
-  }
+  };
 
   const handleDropdown = () => {
     if (!isAuthenticate) return;
-    setIsDropped(!isDropped)
-  }
+    setIsDropped(!isDropped);
+  };
   return (
     <div className={Style.dropdownIconContainer} ref={dropdownIconContainer}>
-      <div >
-        <svg viewBox="0 0 24 24" onClick={handleDropdown}>
-          <path d="M0 0h24v24H0V0z" fill="none" />
-          <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z" />
+      <div>
+        <svg viewBox='0 0 24 24' onClick={handleDropdown}>
+          <path d='M0 0h24v24H0V0z' fill='none' />
+          <path d='M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z' />
         </svg>
       </div>
-      {isDropped && <div ref={dropdown}> <Dropdown article={article} /> </div>}
+      {isDropped && (
+        <div ref={dropdown}>
+          {' '}
+          <Dropdown article={article} />{' '}
+        </div>
+      )}
     </div>
-  )
-}
+  );
+};

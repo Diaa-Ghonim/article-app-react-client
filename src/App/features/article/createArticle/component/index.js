@@ -1,45 +1,42 @@
-
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Editor } from '@tinymce/tinymce-react';
 import { addArticle } from '../actionsCreator';
 import axios from '../../../../util/axiosConfig';
 import Style from './style.module.scss';
 
-
 export class index extends Component {
-
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       open: false,
       title: '',
-      content: ''
-    }
+      content: '',
+    };
     this.addArticle = this.addArticle.bind(this);
   }
 
   handleEditorChange = (content, editor) => {
     this.setState((state, props) => {
-      return { content }
-    })
-
-
-  }
+      return { content };
+    });
+  };
 
   handleTitleChange = (e) => {
     const title = e.target.value;
     this.setState((state, props) => {
-      return { title: title }
+      return { title: title };
     });
-  }
+  };
 
   addArticle() {
-
     if (!this.state.title || !this.state.content) return;
 
-    this.props.addArticle({ title: this.state.title, content: this.state.content });
+    this.props.addArticle({
+      title: this.state.title,
+      content: this.state.content,
+    });
   }
 
   render() {
@@ -47,16 +44,17 @@ export class index extends Component {
       <div>
         <div className={Style.title}>
           <div className={Style.common}>Title : </div>
-          <div><input name='title' type='text' onChange={this.handleTitleChange} /></div>
+          <div>
+            <input name='title' type='text' onChange={this.handleTitleChange} />
+          </div>
         </div>
         <div>
           <div className={Style.common}>Body : </div>
         </div>
         <Editor
           apiKey='xemi0gu8epvh5gghdl8iopvds9g3iejyfuvljtcv7ybkcact'
-          initialValue=""
+          initialValue=''
           disabled={false}
-
           id='create-article'
           init={{
             //  selector: 'textarea#myTextArea',
@@ -69,7 +67,8 @@ export class index extends Component {
             images_upload_handler: function (blobInfo, success, failure) {
               let data = new FormData();
               data.append('image', blobInfo.blob(), blobInfo.filename());
-              axios.post('/api/images/upload-images', data)
+              axios
+                .post('/api/images/upload-images', data)
                 .then(function (res) {
                   // console.log(res);
                   // success(`${process.env.REACT_APP_API_URL}/images/${res.data.location}`);
@@ -82,28 +81,30 @@ export class index extends Component {
             plugins: [
               'advlist autolink lists link image charmap print preview anchor',
               'searchreplace visualblocks code fullscreen',
-              'insertdatetime media table paste code help wordcount'
+              'insertdatetime media table paste code help wordcount',
             ],
-            toolbar:
-              `undo redo | formatselect| image | bold italic backcolor | \
+            toolbar: `undo redo | formatselect| image | bold italic backcolor | \
                 alignleft aligncenter alignright alignjustify | \
                 bullist numlist outdent indent | removeformat | help`,
             image_uploadtab: true,
-
           }}
           onEditorChange={this.handleEditorChange}
         />
         <div>
-          <input className={Style.submit} type='submit' value='add aricle' onClick={this.addArticle} />
+          <input
+            className={Style.submit}
+            type='submit'
+            value='add aricle'
+            onClick={this.addArticle}
+          />
         </div>
       </div>
-    )
+    );
   }
 }
 
-
 const mapDispatchToProps = {
-  addArticle
-}
+  addArticle,
+};
 
 export default connect(null, mapDispatchToProps)(index);

@@ -1,4 +1,3 @@
-
 import '../createActionsHelpers';
 export const parseError = (error) => {
   console.log(error);
@@ -6,11 +5,11 @@ export const parseError = (error) => {
     const { data, status } = error.response;
     return {
       msg: data.message,
-      status: status
-    }
+      status: status,
+    };
   }
   return {
     msg: 'Something went wrong !!',
-    status: null
-  }
-}
+    status: null,
+  };
+};

@@ -28,16 +28,24 @@ export default class Navbar extends Component {
     this.showDropdown = React.createRef();
     this.dropdown = React.createRef();
     this.toggleDropdown = this.toggleDropdown.bind(this);
-    this.hideDropdownWhenClickOutSideIt = this.hideDropdownWhenClickOutSideIt.bind(this);
+    this.hideDropdownWhenClickOutSideIt = this.hideDropdownWhenClickOutSideIt.bind(
+      this
+    );
   }
 
   static propTypes = {};
   componentDidMount() {
-    document.body.addEventListener('click', this.hideDropdownWhenClickOutSideIt);
+    document.body.addEventListener(
+      'click',
+      this.hideDropdownWhenClickOutSideIt
+    );
   }
 
   componentWillUnmount() {
-    document.body.removeEventListener('click', this.hideDropdownWhenClickOutSideIt);
+    document.body.removeEventListener(
+      'click',
+      this.hideDropdownWhenClickOutSideIt
+    );
   }
 
   hideDropdownWhenClickOutSideIt(e) {
@@ -48,12 +56,11 @@ export default class Navbar extends Component {
     ) {
       this.makeDroppedStateFalse();
     }
-
   }
 
   hideDropdownAfterClickedOnListItemOrLink(e) {
     if (e.target.tagName === 'LI' || e.target.tagName === 'A') {
-      this.makeDroppedStateFalse()
+      this.makeDroppedStateFalse();
     }
   }
 
@@ -73,8 +80,8 @@ export default class Navbar extends Component {
     const dropdown = this.state.dropped ? (
       <Dropdown dropped={this.state.dropped} />
     ) : (
-        ''
-      );
+      ''
+    );
 
     return (
       <NavbarHolder>
@@ -96,7 +103,12 @@ export default class Navbar extends Component {
                     <path d='M2 10h32L18 26 2 10z'></path>
                   </Svg>
                 </ShowDropdown>
-                <DropdownContainer ref={this.dropdown} onClick={this.hideDropdownAfterClickedOnListItemOrLink.bind(this)}>
+                <DropdownContainer
+                  ref={this.dropdown}
+                  onClick={this.hideDropdownAfterClickedOnListItemOrLink.bind(
+                    this
+                  )}
+                >
                   {dropdown}
                 </DropdownContainer>
               </Options>

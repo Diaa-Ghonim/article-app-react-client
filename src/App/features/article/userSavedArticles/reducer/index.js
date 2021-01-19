@@ -1,8 +1,6 @@
-
-
-import { createReducer } from "../../../../util/createReducer";
-import { handlerActionsForArrayOfArticles } from "../../Article/articleActionsHandler";
-import { userSavedArticlesHandler } from "../handlers";
+import { createReducer } from '../../../../util/createReducer';
+import { handlerActionsForArrayOfArticles } from '../../Article/articleActionsHandler';
+import { userSavedArticlesHandler } from '../handlers';
 
 export const initialState = {
   articles: [],
@@ -12,5 +10,6 @@ export const initialState = {
 };
 
 export const userSavedArticlesReducer = createReducer(initialState, {
-  ...userSavedArticlesHandler, ...handlerActionsForArrayOfArticles
-})
+  ...userSavedArticlesHandler,
+  ...handlerActionsForArrayOfArticles,
+});

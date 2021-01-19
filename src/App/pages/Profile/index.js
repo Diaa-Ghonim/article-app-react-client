@@ -6,17 +6,18 @@ import UserArticlesWithMiddleNav from './UserArticlesWithMiddleNav';
 import Spinner from '../../shared/Spinner';
 import ShowError from '../../shared/ShowError';
 
-
 export default ({ match }) => {
-  const { params: { username }, url } = match;
+  const {
+    params: { username },
+    url,
+  } = match;
   const dispatch = useDispatch();
   const { getUser } = actions;
   useEffect(() => {
-    dispatch(getUser(username))
-
+    dispatch(getUser(username));
   }, [username]);
 
-  const { user, isLoading, error } = useSelector(({ user }) => (user));
+  const { user, isLoading, error } = useSelector(({ user }) => user);
 
   return (
     <div className='main-container-holder'>
@@ -25,7 +26,10 @@ export default ({ match }) => {
           {isLoading ? (
             <Spinner />
           ) : error ? (
-            <ShowError error={error} tryLoadingAgain={() => getUser(username)} />
+            <ShowError
+              error={error}
+              tryLoadingAgain={() => getUser(username)}
+            />
           ) : user ? (
             <>
               <div className='user-card-holder'>
@@ -39,12 +43,10 @@ export default ({ match }) => {
               </div>
             </>
           ) : (
-                  ''
-                )
-          }
+            ''
+          )}
         </div>
       </div>
     </div>
   );
-}
-
+};

@@ -1,5 +1,3 @@
-
-
 export default class Article {
   constructor(article) {
     // console.log(article);
@@ -40,7 +38,6 @@ export default class Article {
   set ownerName(value) {
     this._ownerName = value;
   }
-
 
   get ownerUsername() {
     return this._ownerUsername;

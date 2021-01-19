@@ -6,7 +6,7 @@ export const searchLoading = createAction(SEARCH.LOADING);
 export const searchSuccess = createAction(SEARCH.SUCCESS, 'items');
 export const searchFailure = createAction(SEARCH.FAILURE, 'error');
 
-export const search = (searchString) => async dispatch => {
+export const search = (searchString) => async (dispatch) => {
   dispatch(searchLoading());
   try {
     const { data } = await axios.get(`/api/search/${searchString}`);

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import Style from './style.module.scss';
 
 export default function ({ unfollowCallback }) {
@@ -11,10 +11,8 @@ export default function ({ unfollowCallback }) {
         onMouseEnter={() => setIsHover(true)}
         onMouseLeave={() => setIsHover(false)}
       >
-        {
-          isHover ? 'Unfollow' : 'Following'
-        }
+        {isHover ? 'Unfollow' : 'Following'}
       </button>
     </div>
-  )
+  );
 }

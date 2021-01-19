@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
@@ -9,8 +8,10 @@ import { followUser, unfollowUser } from '../../../mainUser';
 
 export default ({ bestWriter }) => {
   const dispatch = useDispatch();
-  const mainUser = useSelector(({ mainUser }) => (mainUser));
-  const isFollowing = mainUser.user.following.find(followed => followed.username === bestWriter.username);
+  const mainUser = useSelector(({ mainUser }) => mainUser);
+  const isFollowing = mainUser.user.following.find(
+    (followed) => followed.username === bestWriter.username
+  );
   const isMeBestWriter = mainUser.user.username === bestWriter.username;
   return (
     <div>
@@ -23,8 +24,7 @@ export default ({ bestWriter }) => {
                   className={Style.userImage}
                   // style={{ backgroundImage: `url(${process.env.REACT_APP_API_URL}/images/${bestWriter.profImage})` }}
                   style={{ backgroundImage: `url(${bestWriter.profImage})` }}
-                >
-                </div>
+                ></div>
               </NavLink>
             </div>
           </div>
@@ -41,31 +41,26 @@ export default ({ bestWriter }) => {
             </div>
           </div>
           <div className={Style.followBtnContainer}>
-
-            {
-              !isMeBestWriter ? (
-
-
-                isFollowing ? (
-                  <UnfollowBtn
-                    unfollowCallback={() => dispatch(unfollowUser(bestWriter.username))}
-                  />
-                ) : (
-                    <FollowBtn
-                      followCallback={() => dispatch(followUser(bestWriter.username))}
-                    />
-                  )
-
+            {!isMeBestWriter ? (
+              isFollowing ? (
+                <UnfollowBtn
+                  unfollowCallback={() =>
+                    dispatch(unfollowUser(bestWriter.username))
+                  }
+                />
               ) : (
-                  ''
-                )
-            }
+                <FollowBtn
+                  followCallback={() =>
+                    dispatch(followUser(bestWriter.username))
+                  }
+                />
+              )
+            ) : (
+              ''
+            )}
           </div>
-
         </div>
       </div>
     </div>
   );
-}
-
-
+};

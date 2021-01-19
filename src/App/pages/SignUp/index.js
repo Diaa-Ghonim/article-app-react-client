@@ -1,5 +1,4 @@
-
-import React from 'react'
+import React from 'react';
 import { SignUp } from '../../features/auth';
 
 export default function index() {
@@ -9,8 +8,7 @@ export default function index() {
         <div style={{ paddingTop: '25px' }}>
           <SignUp />
         </div>
-
       </div>
     </div>
-  )
+  );
 }

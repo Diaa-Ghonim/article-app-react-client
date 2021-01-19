@@ -3,16 +3,14 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getTopReading } from '../../actionsCreator';
 import ShowListOfArticles from '../../../../../shared/ShowListOfArticles';
 
-
 export default () => {
   const dispatch = useDispatch();
-  const topReadingState = useSelector(state => state.topReading);
+  const topReadingState = useSelector((state) => state.topReading);
   const { articles, isLoading, error } = topReadingState;
 
   useEffect(() => {
     dispatch(getTopReading());
   }, [dispatch]);
-
 
   return (
     <ShowListOfArticles
@@ -21,5 +19,5 @@ export default () => {
       error={error}
       tryLoadingAgain={getTopReading}
     />
-  )
-}
+  );
+};

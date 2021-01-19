@@ -6,13 +6,11 @@ import ShowListArticles from '../../../../shared/ShowListOfArticles';
 export default React.memo((props) => {
   const { username } = props;
   const dispatch = useDispatch();
-  const userArticlesState = useSelector(state => state.userArticles);
+  const userArticlesState = useSelector((state) => state.userArticles);
   const { articles, isLoading, error } = userArticlesState;
-
 
   useEffect(() => {
     dispatch(getUserArticles(username));
-
   }, [dispatch, username]);
 
   return (
@@ -22,5 +20,5 @@ export default React.memo((props) => {
       error={error}
       tryLoadingAgain={() => getUserArticles(username)}
     />
-  )
-})
+  );
+});

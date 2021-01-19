@@ -1,7 +1,5 @@
-
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-
 
 export const Container = styled.div`
   position: absolute;
@@ -17,7 +15,6 @@ export const Container = styled.div`
   background-color: rgba(255, 255, 255, 1);
   box-shadow: rgba(101, 119, 134, 0.2) 0px 0px 15px,
     rgba(101, 119, 134, 0.15) 0px 0px 3px 1px;
-
 `;
 
 export const Rotate = styled.div`
@@ -30,12 +27,12 @@ export const Rotate = styled.div`
   background-color: white;
   border-top: 1px solid rgba(0, 0, 0, 0.15);
   border-left: 1px solid rgba(0, 0, 0, 0.15);
-  transition: all .2s ;
+  transition: all 0.2s;
 `;
 
 export const Text = styled.div`
   padding: 15px 0px;
-  border-bottom : 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
   font-size: 16px;
   font-weight: 500;
 `;
@@ -54,11 +51,11 @@ export const Li = styled.li`
   word-break: break-word;
   font-weight: 500;
   color: #050505;
-  transition: all .2s ;
-  
+  transition: all 0.2s;
+
   &:hover {
     cursor: pointer;
-    background-color: rgb(247, 247, 247);;
+    background-color: rgb(247, 247, 247);
   }
 `;
 

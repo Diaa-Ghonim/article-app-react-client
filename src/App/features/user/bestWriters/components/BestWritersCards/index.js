@@ -8,11 +8,12 @@ import BestWriterCard from '../BestWriterCard';
 
 export default () => {
   const dispatch = useDispatch();
-  const { bestWriters, isLoading, error } = useSelector(({ bestWriters }) => (bestWriters));
+  const { bestWriters, isLoading, error } = useSelector(
+    ({ bestWriters }) => bestWriters
+  );
 
   useEffect(() => {
     dispatch(getBestWriters());
-
   }, [dispatch]);
 
   return (
@@ -27,13 +28,14 @@ export default () => {
           <ShowError error={error} tryLoadingAgain={getBestWriters} />
         </div>
       ) : (
-            <div>
-              {bestWriters.map((bestWriter) => {
-                return <BestWriterCard key={bestWriter.id} bestWriter={bestWriter} />;
-              })}
-            </div>
-          )}
+        <div>
+          {bestWriters.map((bestWriter) => {
+            return (
+              <BestWriterCard key={bestWriter.id} bestWriter={bestWriter} />
+            );
+          })}
+        </div>
+      )}
     </div>
   );
-}
-
+};

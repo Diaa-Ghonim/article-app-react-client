@@ -1,4 +1,3 @@
-
 import styled from 'styled-components';
 import { device } from '../../../breakPoints';
 import { NavLink } from 'react-router-dom';
@@ -48,7 +47,7 @@ export const Li = styled.li`
 export const Span = styled.span`
   // color: rgb(240, 235, 235);
   // color: #333;
-  color:#337ab7;
+  color: #337ab7;
   font-weight: bold;
   padding: 5px;
   @media ${device.tablet} {

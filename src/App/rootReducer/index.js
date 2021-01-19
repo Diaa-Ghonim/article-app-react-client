@@ -1,5 +1,4 @@
-
-import { combineReducers } from 'redux'
+import { combineReducers } from 'redux';
 import { bestWritersReducer } from '../features/user/bestWriters';
 import { mainUserReducer } from '../features/user/mainUser';
 import { articleReducer } from '../features/article/showArticle';
@@ -13,7 +12,6 @@ import { articleActionErrorReducer } from '../features/article/Article';
 import { signErrorReducer } from '../features/auth';
 import { searchReducer } from '../features/search';
 import { feedReducer } from '../features/article/feedArticles';
-
 
 export default combineReducers({
   article: articleReducer,
@@ -29,5 +27,4 @@ export default combineReducers({
   signError: signErrorReducer,
   search: searchReducer,
   feed: feedReducer,
-
-})
+});

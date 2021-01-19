@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 // import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
@@ -12,7 +11,7 @@ export default ({ params }) => {
     dispatch(getArticle({ username, articleID }));
   }, [dispatch, username, articleID]);
 
-  const { article, isLoading, error } = useSelector(({ article }) => (article));
+  const { article, isLoading, error } = useSelector(({ article }) => article);
 
   return (
     <ShowArticle
@@ -21,6 +20,5 @@ export default ({ params }) => {
       error={error}
       tryLoadingAgain={() => getArticle({ username, articleID })}
     />
-  )
-}
-
+  );
+};

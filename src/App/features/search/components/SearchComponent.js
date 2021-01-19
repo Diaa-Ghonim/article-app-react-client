@@ -9,13 +9,13 @@ export const SearchComponent = ({ isLoading, error, items }) => {
       ) : error ? (
         <div> error.msg </div>
       ) : (
-            <div >
-              <h1> Search Result Not Devoloped Yet !!</h1>
-            </div>
-          )}
+        <div>
+          <h1> Search Result Not Devoloped Yet !!</h1>
+        </div>
+      )}
     </div>
-  )
-}
+  );
+};
 
 // items.map((item, i) => (
 //   <div key={i}>

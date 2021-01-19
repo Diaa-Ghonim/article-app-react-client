@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import Style from './style.module.scss';
 import TryLoadingAgain from './components/TryLoadingAgain';
 import { ErrorMessage } from './components/errorMessage';
@@ -17,7 +17,5 @@ export default function index({ error, tryLoadingAgain }) {
       <ErrorMessage errorMsg={error.msg} />
       <TryLoadingAgain tryLoadingAgain={tryLoadingAgain} />
     </div>
-  )
+  );
 }
-
-

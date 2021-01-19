@@ -1,9 +1,6 @@
-
-
-import { createReducer } from "../../../../util/createReducer";
-import { handlerActionsForOneArticle } from "../../Article/articleActionsHandler";
-import { articleHandler } from "../handlers";
-
+import { createReducer } from '../../../../util/createReducer';
+import { handlerActionsForOneArticle } from '../../Article/articleActionsHandler';
+import { articleHandler } from '../handlers';
 
 export const initialState = {
   article: null,
@@ -13,5 +10,6 @@ export const initialState = {
 };
 
 export const articleReducer = createReducer(initialState, {
-  ...articleHandler, ...handlerActionsForOneArticle
+  ...articleHandler,
+  ...handlerActionsForOneArticle,
 });

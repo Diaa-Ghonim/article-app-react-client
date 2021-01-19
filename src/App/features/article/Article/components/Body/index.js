@@ -4,24 +4,22 @@ import ReactHtmlParser from 'react-html-parser';
 import { useHistory } from 'react-router-dom';
 
 export default function Index({ article: { id, content } }) {
-
   const [isShowmore, setIsShowmore] = useState(false);
   const [isArticleLong, setIsArticleLong] = useState(false);
 
   /**
    * i can use ref and use effect here also
    */
-  const measuredRef = useCallback(
-    (node) => {
-      if (node !== null) {
-        if (node.getBoundingClientRect().height >= 200) {
-          setIsArticleLong(true);
-        }
+  const measuredRef = useCallback((node) => {
+    if (node !== null) {
+      if (node.getBoundingClientRect().height >= 200) {
+        setIsArticleLong(true);
       }
-    },
-    [],
-  );
-  const { location: { pathname } } = useHistory();
+    }
+  }, []);
+  const {
+    location: { pathname },
+  } = useHistory();
 
   useEffect(() => {
     if (pathname.indexOf(id) > -1) {
@@ -29,11 +27,10 @@ export default function Index({ article: { id, content } }) {
       setIsArticleLong(false);
       setIsShowmore(true);
     }
-
-  }, [])
+  }, []);
   return (
     <>
-      <div className='article-content' >
+      <div className='article-content'>
         <div className='article-text-wrapper'>
           <div
             className='article-text'
@@ -43,17 +40,14 @@ export default function Index({ article: { id, content } }) {
             {ReactHtmlParser(content)}
           </div>
 
-          {
-            isArticleLong && (
-              <div className='read-article' onClick={() => setIsShowmore(!isShowmore)}>
-                <span>
-                  {
-                    isShowmore ? 'less more' : 'show more'
-                  }
-                </span>
-              </div>
-            )
-          }
+          {isArticleLong && (
+            <div
+              className='read-article'
+              onClick={() => setIsShowmore(!isShowmore)}
+            >
+              <span>{isShowmore ? 'less more' : 'show more'}</span>
+            </div>
+          )}
         </div>
       </div>
     </>

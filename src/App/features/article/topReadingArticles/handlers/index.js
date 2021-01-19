@@ -11,7 +11,6 @@ export const topReadingArticlesHandler = {
   },
   [GET_TOP_READING_ARTICLES.SUCCESS]: (state, { payload: { articles } }) => {
     return setFetchedArticles(state, articles);
-
   },
   [GET_TOP_READING_ARTICLES.FAILURE]: (state, { payload: { error } }) => {
     return {
@@ -19,5 +18,5 @@ export const topReadingArticlesHandler = {
       isLoading: false,
       error: parseError(error),
     };
-  }
-}
+  },
+};

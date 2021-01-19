@@ -2,7 +2,6 @@ import React from 'react';
 import { SvgLike, SvgDislike, SvgSave, SvgShare } from './Svgs';
 import './style.scss';
 
-
 export default ({ article }) => {
   return (
     <>
@@ -13,5 +12,5 @@ export default ({ article }) => {
         <SvgSave article={article} />
       </div>
     </>
-  )
-}
+  );
+};

@@ -1,13 +1,10 @@
-
 import {
   updateObject,
   updateItemInArray,
-  filterArrayById
+  filterArrayById,
 } from '../../../util/reducerUtilities';
 
 /**-------------------- filter array helper ----------------------------- */
-
-
 
 /**-------------------- state one article -------------------------------------- */
 
@@ -17,7 +14,7 @@ export const setFetchedArticle = (article) => {
 };
 
 export const deleteArticle = (article) => {
-  return null
+  return null;
 };
 
 export const addLikeToArticle = (article, user) => {
@@ -26,23 +23,27 @@ export const addLikeToArticle = (article, user) => {
   const likes = [user, ...article.likes];
   /** you can use dislikesFilter without spread operator this additional step */
   const dislikes = [...dislikesFilterd];
-  return { ...article, likes, dislikes }; /** this pure or  return input article but not pure */
-}
+  return {
+    ...article,
+    likes,
+    dislikes,
+  }; /** this pure or  return input article but not pure */
+};
 
 export const removelikefromArticle = (article, user) => {
   if (!article) return;
   const likesFilterd = filterArrayById(article.likes, user.id);
-  const likes = [...likesFilterd]
+  const likes = [...likesFilterd];
   return { ...article, likes };
-}
+};
 
 export const addDislikeToArticle = (article, user) => {
   if (!article) return;
   const likesFilterd = filterArrayById(article.likes, user.id);
   const likes = [...likesFilterd];
   const dislikes = [user, ...article.dislikes];
-  return { ...article, likes, dislikes };/** pure function */
-}
+  return { ...article, likes, dislikes }; /** pure function */
+};
 
 export const removeDislikeFromArticle = (article, user) => {
   if (!article) return;
@@ -61,18 +62,13 @@ export const removeSaveFromArticle = (article, user) => {
   if (!article) return;
   const savesFilterd = filterArrayById(article.saves, user.id);
   const saves = [...savesFilterd];
-  return { ...article, saves };/**pure function */
-}
-
-
-
-
-
+  return { ...article, saves }; /**pure function */
+};
 
 /**-------------------------set fetched Articles -------------------------------- */
 
 export const setFetchedArticles = (state, articles) => {
-  const articlesMapped = articles.map(article => {
+  const articlesMapped = articles.map((article) => {
     article.dateOfCreate = new Date(article.dateOfCreate).toDateString();
     return article;
   });
@@ -80,9 +76,9 @@ export const setFetchedArticles = (state, articles) => {
     articles: articlesMapped.reverse(),
     isLoading: false,
     isFetched: true,
-    error: null
+    error: null,
   });
-}
+};
 
 /**-------------------------add delete article to array -------------------------- */
 
@@ -95,62 +91,79 @@ export const addArticleToArray = (state, article) => {
 export const deleteArticleFromArray = (state, articleId) => {
   const updatedArticles = filterArrayById(state.articles, articleId);
   return updateObject(state, { articles: updatedArticles });
-}
-
-
+};
 
 /**---------------------------- update articles arrays -------------------------- */
 
-
 export const addLikeToArticleInArray = (state, articleId, user) => {
-  const updatedArticles = updateItemInArray(state.articles, articleId, (article) => {
-    return addLikeToArticle(article, user);
-  });
+  const updatedArticles = updateItemInArray(
+    state.articles,
+    articleId,
+    (article) => {
+      return addLikeToArticle(article, user);
+    }
+  );
   return updateObject(state, { articles: updatedArticles });
 };
 
 export const removeLikeFromArticleInArray = (state, articleId, user) => {
-  const updatedArticles = updateItemInArray(state.articles, articleId, (article) => {
-    return removelikefromArticle(article, user);
-  });
+  const updatedArticles = updateItemInArray(
+    state.articles,
+    articleId,
+    (article) => {
+      return removelikefromArticle(article, user);
+    }
+  );
   return updateObject(state, { articles: updatedArticles });
 };
-
 
 /**-------------------------dislike actions ---------------------------------------- */
 
 export const addDislikeToArticleInArray = (state, articleId, user) => {
-  const updatedArticles = updateItemInArray(state.articles, articleId, (article) => {
-    return addDislikeToArticle(article, user);
-  });
+  const updatedArticles = updateItemInArray(
+    state.articles,
+    articleId,
+    (article) => {
+      return addDislikeToArticle(article, user);
+    }
+  );
   return updateObject(state, { articles: updatedArticles });
 };
 
 export const removeDislikeFromArticleInArray = (state, articleId, user) => {
-  const updatedArticles = updateItemInArray(state.articles, articleId, (article) => {
-    return removeDislikeFromArticle(article, user);
-  });
+  const updatedArticles = updateItemInArray(
+    state.articles,
+    articleId,
+    (article) => {
+      return removeDislikeFromArticle(article, user);
+    }
+  );
   return updateObject(state, { articles: updatedArticles });
 };
-
 
 /**-------------------------save actions ------------------------------------- */
 
 export const addSaveToArticleInArray = (state, articleId, user) => {
-  const updatedArticles = updateItemInArray(state.articles, articleId, (article) => {
-    return addSaveToArticle(article, user);
-  });
+  const updatedArticles = updateItemInArray(
+    state.articles,
+    articleId,
+    (article) => {
+      return addSaveToArticle(article, user);
+    }
+  );
   return updateObject(state, { articles: updatedArticles });
 };
 
 export const removeSaveFromArticleInArray = (state, articleId, user) => {
-  const updatedArticles = updateItemInArray(state.articles, articleId, (article) => {
-    return removeSaveFromArticle(article, user);
-  });
+  const updatedArticles = updateItemInArray(
+    state.articles,
+    articleId,
+    (article) => {
+      return removeSaveFromArticle(article, user);
+    }
+  );
   return updateObject(state, { articles: updatedArticles });
 };
-
-
 
 // export const handleArticleInterActionsState = (state, action) => {
 //   switch (action.type) {

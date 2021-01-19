@@ -17,7 +17,6 @@ export const bestWritersReducer = (state = intialState, { type, payload }) => {
       };
 
     case GET_BEST_WRITERS.SUCCESS:
-
       return {
         ...state,
         isLoading: false,

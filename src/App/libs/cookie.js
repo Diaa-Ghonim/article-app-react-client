@@ -1,7 +1,4 @@
-
-
 export const Cookie = Object.freeze({
-
   get(name) {
     let val;
     const cookies = document.cookie.split(';');
@@ -57,7 +54,6 @@ export const Cookie = Object.freeze({
     this.set(name, '', options);
   },
 });
-
 
 /**
  * // 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjdlMzJhMDMxYjdjMDJmYTBmNDNhMzciLCJfbmFtZSI6InRvYWEiLCJfdXNlcm5hbWUiOiJ0b2FhIiwiX2VtYWlsIjoic29yYUBnbWFpbC5jb20iLCJfcGFzc3dvcmQiOiIkMmIkMTAkV2hjUVQ2SS9CdjdXSy42SVhwbzBpZXNRbS8vandqdS85NW1RUzNBbDF1NHU0bWhSTEhjbVMiLCJfcHJvZkltYWdlIjoiZGVmYXVsdC1pbWFnZS5wbmciLCJfcmF0ZSI6MTIsImlhdCI6MTYwMjEwNjAxNiwiZXhwIjoxNjA1NzA2MDE2fQ.XBAPl8_LYbcE1KTs7AFVB1OdYyUOKggd_ZQLxFHnLHY';

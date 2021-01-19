@@ -16,8 +16,8 @@ export const store = createStore(
 // console.log(store.getState());
 
 function otherMiddleWare({ dispatch, getState }) {
-  return next => action => {
+  return (next) => (action) => {
     // console.log(action, 'from other middleware');
-    next(action)
-  }
+    next(action);
+  };
 }

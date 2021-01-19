@@ -6,21 +6,21 @@ export const articleHandler = {
   [GET_ARTICLE.LOADING]: (state, { payload }) => {
     return {
       ...state,
-      isLoading: true
-    }
+      isLoading: true,
+    };
   },
   [GET_ARTICLE.SUCCESS]: (state, { payload: { article } }) => {
     return {
       article: setFetchedArticle(article),
       isLoading: false,
-      error: null
-    }
+      error: null,
+    };
   },
   [GET_ARTICLE.FAILURE]: (state, { payload: { error } }) => {
     return {
       ...state,
       isLoading: false,
-      error: parseError(error)
-    }
-  }
-}
+      error: parseError(error),
+    };
+  },
+};

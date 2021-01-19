@@ -1,19 +1,11 @@
-import React from 'react'
+import React from 'react';
 import Style from './style.module.scss';
 import ArticleName from './Name';
 import ArticleShowDropdown from './showDropdown';
 import ArticleInfo from './Info';
 
-
 export default ({ article }) => {
-
-  const {
-    id,
-    title,
-    ownerUsername,
-    ownerName,
-    dateOfCreate
-  } = article;
+  const { id, title, ownerUsername, ownerName, dateOfCreate } = article;
 
   return (
     <>
@@ -30,4 +22,4 @@ export default ({ article }) => {
       </div>
     </>
   );
-}
+};

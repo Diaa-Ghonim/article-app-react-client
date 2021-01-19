@@ -1,12 +1,9 @@
-
-
 // const LOAD_POSTS_SUCCESS = 'LOAD_POSTS_SUCCESS';
 // const LOAD_POSTS_FAILURE = 'LOAD_POSTS_FAILURE';
 // const LOAD_POSTS_START = 'LOAD_POSTS_START';
 
-
 /**
- * there is tema of another approach 
+ * there is tema of another approach
  */
 
 // const loadPosts2 = (userId) => {
@@ -23,59 +20,68 @@
  */
 
 export function callAPIMiddleware({ dispatch, getState }) {
-  return next => action => {
-    const { types, callAPI, shouldCallAPI = () => true, payload = {} } = action
+  return (next) => (action) => {
+    const { types, callAPI, shouldCallAPI = () => true, payload = {} } = action;
     // console.log(action);
     if (!types) {
       // Normal action: pass it on
-      return next(action)
+      return next(action);
     }
 
     if (
       !Array.isArray(types) ||
       types.length !== 3 ||
-      !types.every(type => typeof type === 'string')
+      !types.every((type) => typeof type === 'string')
     ) {
-      throw new Error('Expected an array of three string types.')
+      throw new Error('Expected an array of three string types.');
     }
 
     if (typeof callAPI !== 'function') {
-      throw new Error('Expected callAPI to be a function.')
+      throw new Error('Expected callAPI to be a function.');
     }
 
     if (!shouldCallAPI(getState())) {
-      return
+      return;
     }
 
-    const [requestType, successType, failureType] = types
+    const [requestType, successType, failureType] = types;
 
     dispatch(
-      Object.assign({}, {
-        type: requestType
-      })
-    )
+      Object.assign(
+        {},
+        {
+          type: requestType,
+        }
+      )
+    );
 
     return callAPI().then(
       ({ data }) =>
         dispatch(
-          Object.assign({}, {
-            payload: { data },
-            type: successType
-          })
+          Object.assign(
+            {},
+            {
+              payload: { data },
+              type: successType,
+            }
+          )
         ),
-      error =>
+      (error) =>
         dispatch(
-          Object.assign({}, {
-            payload: { error },
-            type: failureType
-          })
+          Object.assign(
+            {},
+            {
+              payload: { error },
+              type: failureType,
+            }
+          )
         )
-    )
-  }
+    );
+  };
 }
 
 /**
- * this is thunk 
+ * this is thunk
  */
 
 function createThunkMiddleware(extraArgument) {

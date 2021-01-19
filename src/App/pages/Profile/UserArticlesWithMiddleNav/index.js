@@ -6,9 +6,7 @@ import { UserLikedArticles } from '../../../features/article/userLikedArticles';
 import { UserDislikedArticles } from '../../../features/article/userDislikedArticles';
 import { UserSavedArticles } from '../../../features/article/userSavedArticles';
 
-
 export default class index extends Component {
-
   render() {
     const { username } = this.props;
     return (

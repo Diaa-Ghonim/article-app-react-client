@@ -1,16 +1,13 @@
-import React from 'react'
+import React from 'react';
 import { useHistory } from 'react-router-dom';
 
-
-
 export default () => {
-
   const history = useHistory();
   const onSubmitSearchForm = (e) => {
     e.preventDefault();
     const searchValue = encodeURIComponent(e.target.search.value);
     history.push(`/search=${searchValue}`);
-  }
+  };
   return (
     <>
       <form onSubmit={onSubmitSearchForm}>
@@ -23,4 +20,4 @@ export default () => {
       </form>
     </>
   );
-}
+};

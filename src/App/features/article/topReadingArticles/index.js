@@ -5,5 +5,5 @@ import { topReadingArticlesReducer } from './reducer';
 export {
   TopReadingArticles,
   ListOfTopReadingTitles,
-  topReadingArticlesReducer
+  topReadingArticlesReducer,
 };

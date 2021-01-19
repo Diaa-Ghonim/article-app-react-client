@@ -9,18 +9,18 @@ import { clearArticleActionError } from '../actions';
 
 export default ({ article }) => {
   const dispatch = useDispatch();
-  const articleActionError = useSelector(state => state.articleActionError);
+  const articleActionError = useSelector((state) => state.articleActionError);
   const { error, articleID } = articleActionError;
   useEffect(() => {
     let timeOut;
     if (error) {
       timeOut = setTimeout(() => {
-        dispatch(clearArticleActionError())
+        dispatch(clearArticleActionError());
       }, 5000);
     }
     return () => {
       clearTimeout(timeOut);
-    }
+    };
   }, [error]);
 
   return (
@@ -29,9 +29,12 @@ export default ({ article }) => {
         <Address article={article} />
         <Body article={article} />
         <Actions article={article} />
-        {article.id === articleID && error ? <ArticleActionError errorMsg={error.msg} /> : ''}
+        {article.id === articleID && error ? (
+          <ArticleActionError errorMsg={error.msg} />
+        ) : (
+          ''
+        )}
       </div>
-    </div >
+    </div>
   );
-}
-
+};

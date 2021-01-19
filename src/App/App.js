@@ -11,13 +11,13 @@ console.log(process.env);
 
 export default function App() {
   return (
-    <BrowserRouter >
+    <BrowserRouter>
       <Provider store={store}>
         <ModalProvider>
           <div className='App'>
             <Routes />
           </div>
-        </ModalProvider >
+        </ModalProvider>
       </Provider>
     </BrowserRouter>
   );

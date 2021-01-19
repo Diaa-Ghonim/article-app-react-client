@@ -6,9 +6,7 @@ class index extends React.Component {
     return (
       <div className='main-container-holder'>
         <div className='content-holder'>
-
           <CreateArticle />
-
         </div>
       </div>
     );
@@ -16,4 +14,3 @@ class index extends React.Component {
 }
 
 export default index;
-

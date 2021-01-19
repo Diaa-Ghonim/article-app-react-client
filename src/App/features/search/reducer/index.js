@@ -4,30 +4,30 @@ import { SEARCH } from '../actionType';
 const initialState = {
   items: [],
   isLoading: false,
-  error: null
-}
+  error: null,
+};
 
 export const searchReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case SEARCH.LOADING:
       return {
         ...state,
-        isLoading: true
-      }
+        isLoading: true,
+      };
     case SEARCH.SUCCESS:
       return {
         ...state,
         isLoading: false,
         error: null,
-        items: payload.items
-      }
+        items: payload.items,
+      };
     case SEARCH.FAILURE:
       return {
         ...state,
         isLoading: false,
-        error: parseError(payload.error)
-      }
+        error: parseError(payload.error),
+      };
     default:
       return state;
   }
-}
+};

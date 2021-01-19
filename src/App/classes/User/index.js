@@ -4,8 +4,6 @@
 // import Email from '../../validaions/EmailValidation';
 
 export default class index {
-
-
   constructor(user) {
     // console.log(user, 'user');
     this._id = user._id;

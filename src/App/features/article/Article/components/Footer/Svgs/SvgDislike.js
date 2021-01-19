@@ -1,5 +1,5 @@
 import './style.scss';
-import React, { useContext } from 'react'
+import React, { useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { dislikeArticle, removeDislikeArticle } from '../../../actions';
 
@@ -10,19 +10,22 @@ import { useHistory } from 'react-router-dom';
 export default function SvgDislike({ article }) {
   const history = useHistory();
   const dispatch = useDispatch();
-  const { toggleModal, addModalContent, addModalRoute } = useContext(modalContext);
-  const { isAuthenticate, user } = useSelector(state => state.mainUser);
-  const isDislike = article.dislikes.find(dislikedUser => dislikedUser.id === user.id);
+  const { toggleModal, addModalContent, addModalRoute } = useContext(
+    modalContext
+  );
+  const { isAuthenticate, user } = useSelector((state) => state.mainUser);
+  const isDislike = article.dislikes.find(
+    (dislikedUser) => dislikedUser.id === user.id
+  );
 
   const handleDislikeArticle = () => {
     if (!isAuthenticate) {
       if (window.innerWidth <= 400) {
         return history.push('/signin');
-
       } else {
         toggleModal();
         addModalRoute('/signin');
-        addModalContent(<SignIn />)
+        addModalContent(<SignIn />);
         return;
       }
     }
@@ -32,9 +35,7 @@ export default function SvgDislike({ article }) {
     } else {
       dispatch(removeDislikeArticle(article.id));
     }
-  }
-
-
+  };
 
   return (
     <div className='svg-holder'>

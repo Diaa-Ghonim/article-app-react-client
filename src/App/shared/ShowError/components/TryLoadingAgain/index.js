@@ -6,9 +6,12 @@ export default ({ tryLoadingAgain }) => {
   const dispatch = useDispatch();
   return (
     <div>
-      <button className={Style.tryAgain} onClick={() => dispatch(tryLoadingAgain())}>
+      <button
+        className={Style.tryAgain}
+        onClick={() => dispatch(tryLoadingAgain())}
+      >
         Try Again
       </button>
     </div>
   );
-}
+};

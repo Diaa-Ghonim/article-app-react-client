@@ -1,7 +1,6 @@
-
-import { createReducer } from "../../../../util/createReducer";
-import { handlerActionsForArrayOfArticles } from "../../Article/articleActionsHandler";
-import { topReadingArticlesHandler } from "../handlers";
+import { createReducer } from '../../../../util/createReducer';
+import { handlerActionsForArrayOfArticles } from '../../Article/articleActionsHandler';
+import { topReadingArticlesHandler } from '../handlers';
 
 export const initialState = {
   articles: [],
@@ -11,5 +10,6 @@ export const initialState = {
 };
 
 export const topReadingArticlesReducer = createReducer(initialState, {
-  ...topReadingArticlesHandler, ...handlerActionsForArrayOfArticles
+  ...topReadingArticlesHandler,
+  ...handlerActionsForArrayOfArticles,
 });

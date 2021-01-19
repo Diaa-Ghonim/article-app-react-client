@@ -1,28 +1,29 @@
 import './style.scss';
-import React, { useContext } from 'react'
-import { useSelector } from 'react-redux'
+import React, { useContext } from 'react';
+import { useSelector } from 'react-redux';
 import { modalContext } from '../../../../../../shared/Modal/ModalProvider';
 import { SignIn } from '../../../../../../features/auth';
 import { useHistory } from 'react-router-dom';
 
 export default function SvgShare({ article }) {
   const history = useHistory();
-  const { toggleModal, addModalContent, addModalRoute } = useContext(modalContext);
-  const { isAuthenticate } = useSelector(state => state.mainUser);
+  const { toggleModal, addModalContent, addModalRoute } = useContext(
+    modalContext
+  );
+  const { isAuthenticate } = useSelector((state) => state.mainUser);
 
   const handleShareArticle = () => {
     if (!isAuthenticate) {
       if (window.innerWidth <= 400) {
         return history.push('/signin');
-
       } else {
         toggleModal();
         addModalRoute('/signin');
-        addModalContent(<SignIn />)
+        addModalContent(<SignIn />);
         return;
       }
     }
-  }
+  };
 
   return (
     <div className='svg-holder'>

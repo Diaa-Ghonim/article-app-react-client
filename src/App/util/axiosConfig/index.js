@@ -2,51 +2,50 @@ import _axios from 'axios';
 import { Cookie } from '../../libs/cookie';
 import { store } from '../../store';
 import { authActionsType } from '../../features/auth';
-const { AUTHENTICATE_MAIN_USER } = authActionsType
-
+const { AUTHENTICATE_MAIN_USER } = authActionsType;
 
 const axios = _axios.create({
-    baseURL: process.env.REACT_APP_API_URL,
-    proxy: process.env.REACT_APP_API_URL,
-    // withCredentials: true,
-})
-axios.interceptors.request.use(config => {
+  baseURL: process.env.REACT_APP_API_URL,
+  proxy: process.env.REACT_APP_API_URL,
+  // withCredentials: true,
+});
+axios.interceptors.request.use(
+  (config) => {
     // console.log(config);
     let token = Cookie.get('token');
 
     if (token) {
-        config.headers.Authorization = `Bearer ${token}`;
-
+      config.headers.Authorization = `Bearer ${token}`;
     } else {
-        config.headers.Authorization = null;
-
+      config.headers.Authorization = null;
     }
     return config;
-}, error => Promise.reject(error));
-
+  },
+  (error) => Promise.reject(error)
+);
 
 // Add a response interceptor
-axios.interceptors.response.use(function (response) {
+axios.interceptors.response.use(
+  function (response) {
     // Do something with response data
     return response;
-}, function (error) {
+  },
+  function (error) {
     // Do something with response error
-    if (error.response && (error.response.status === 401 || error.response.status === 403)) {
-        store.dispatch({
-            type: AUTHENTICATE_MAIN_USER.FAILURE,
-            payload: { error },
-        });
+    if (
+      error.response &&
+      (error.response.status === 401 || error.response.status === 403)
+    ) {
+      store.dispatch({
+        type: AUTHENTICATE_MAIN_USER.FAILURE,
+        payload: { error },
+      });
     }
     return Promise.reject(error);
-});
+  }
+);
 
 export default axios;
-
-
-
-
-
-
 
 // axios.defaults.baseURL = 'http://localhost:5000';
 

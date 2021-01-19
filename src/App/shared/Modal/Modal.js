@@ -1,5 +1,3 @@
-
-
 import React, { useContext, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { useHistory } from 'react-router-dom';
@@ -7,13 +5,12 @@ import { modalContext } from './ModalProvider';
 import Style from './style.module.scss';
 
 export default function Modal({ modalRoute }) {
-
   const history = useHistory();
   const {
     // isModal,
     toggleModal,
     // hideModal,
-    modalContent
+    modalContent,
   } = useContext(modalContext);
 
   function onHideModal(evt) {
@@ -30,42 +27,35 @@ export default function Modal({ modalRoute }) {
     window.addEventListener('resize', onHideModal);
     return () => {
       window.removeEventListener('resize', onHideModal);
-    }
+    };
   }, []);
 
   // if (isModal) {
   return ReactDOM.createPortal(
-    <div className={Style['modal-wrapper']} >
-      <div className={Style['modal-container']} onClick={toggleModal} >
-        <div className={Style['modal-content-wrapper']}  >
-          <div
-            className={Style['close-modal-container']}>
-
-            <button
-              className={Style['close-button']}
-              onClick={toggleModal} >
+    <div className={Style['modal-wrapper']}>
+      <div className={Style['modal-container']} onClick={toggleModal}>
+        <div className={Style['modal-content-wrapper']}>
+          <div className={Style['close-modal-container']}>
+            <button className={Style['close-button']} onClick={toggleModal}>
               close
-              </button>
-
+            </button>
           </div>
 
-          <div
-            className={Style['madal-content-container']}
-          >
+          <div className={Style['madal-content-container']}>
             <div
               className={Style['modal-content']}
-              onClick={(e) => { /**console.log(e.target); */ e.stopPropagation() }}
-
+              onClick={(e) => {
+                /**console.log(e.target); */ e.stopPropagation();
+              }}
             >
               {modalContent}
             </div>
-
           </div>
         </div>
       </div>
     </div>,
     document.querySelector('#root')
-  )
+  );
   // } else {
   //   return ''
   // }

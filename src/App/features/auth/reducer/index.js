@@ -1,22 +1,21 @@
-
 import {
   USER_REGISTRATION,
   CLEAR_USER_REGISTRATION_ERROR,
-  RESET_AUTH_SUCCESS
+  RESET_AUTH_SUCCESS,
 } from '../actionsType';
 import { parseError } from '../../../util/parseError';
 const initialState = {
   authSuccess: false,
-  error: null
-}
+  error: null,
+};
 
 export const signErrorReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case USER_REGISTRATION.FAILURE:
       return {
         ...state,
-        error: parseError(payload.error)
-      }
+        error: parseError(payload.error),
+      };
     // case USER_REGISTRATION.SUCCESS:
     //   return {
     //     ...state,
@@ -30,10 +29,10 @@ export const signErrorReducer = (state = initialState, { type, payload }) => {
     case CLEAR_USER_REGISTRATION_ERROR:
       return {
         ...state,
-        error: null
-      }
+        error: null,
+      };
 
     default:
       return state;
   }
-}
+};

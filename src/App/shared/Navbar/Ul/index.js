@@ -5,27 +5,27 @@ import { HomeSvg, ProfileSvg, CreateArticleSvg } from './SvgComponents';
 
 import { Ul, Li, Span, StyledNavLink } from './style';
 
-
 export default function Index() {
-
   const stopPropagation = (e) => {
     e.stopPropagation();
-  }
+  };
 
-  const mainUser = useSelector(state => state.mainUser);
+  const mainUser = useSelector((state) => state.mainUser);
   const { isAuthenticate, user } = mainUser;
 
   return (
     <>
-      <Ul >
+      <Ul>
         <Li>
           <StyledNavLink activeClassName='active' to='/home'>
             <HomeSvg stopPropagation={stopPropagation} />
             <Span>Home</Span>
           </StyledNavLink>
         </Li>
-        {
-          !isAuthenticate ? '' : <>
+        {!isAuthenticate ? (
+          ''
+        ) : (
+          <>
             <Li className='profile-list'>
               <StyledNavLink to={`/${user.username}`}>
                 <ProfileSvg stopPropagation={stopPropagation} />
@@ -40,10 +40,8 @@ export default function Index() {
               </StyledNavLink>
             </Li>
           </>
-        }
+        )}
       </Ul>
     </>
   );
 }
-
-

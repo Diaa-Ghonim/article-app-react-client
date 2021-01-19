@@ -9,9 +9,9 @@ export const SearchContainer = () => {
   const history = useHistory();
   const { pathname } = history.location;
   const searchString = encodeURIComponent(pathname.slice(1));
-  const { isLoading, error, items } = useSelector(({ search }) => (search));
+  const { isLoading, error, items } = useSelector(({ search }) => search);
   useEffect(() => {
     dispatch(search(searchString));
-  }, [dispatch, pathname])
-  return <SearchComponent isLoading={isLoading} error={error} items={items} />
-}
+  }, [dispatch, pathname]);
+  return <SearchComponent isLoading={isLoading} error={error} items={items} />;
+};

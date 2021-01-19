@@ -7,10 +7,12 @@ const addArticleFailure = createAction(ADD_ARTICLE.FAILURE, 'error');
 
 export const addArticle = ({ title, content }) => async (dispatch) => {
   try {
-    const { data: article } = await axios.post('/api/articles', { title, content });
+    const { data: article } = await axios.post('/api/articles', {
+      title,
+      content,
+    });
     dispatch(addArticleSuccess(article));
   } catch (error) {
-    dispatch(addArticleFailure(error))
+    dispatch(addArticleFailure(error));
   }
 };
-
