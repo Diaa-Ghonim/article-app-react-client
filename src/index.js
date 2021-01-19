@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App/App';
 import * as serviceWorker from './serviceWorker';
-if (env === 'production') {
+if (process.env === 'production') {
   console.log = function () {};
 }
 ReactDOM.render(
