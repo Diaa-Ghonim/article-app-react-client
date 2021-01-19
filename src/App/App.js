@@ -6,7 +6,7 @@ import { store } from './store';
 import Routes from './routes';
 import { ModalProvider } from './shared/Modal/ModalProvider';
 import './util/axiosConfig';
-console.log(process.env.REACT_APP_API_URL);
+console.log(process.env.REACT_APP_API_URL, 'dhdh');
 console.log(process.env);
 
 export default function App() {
