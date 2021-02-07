@@ -5,6 +5,7 @@ import Styles from './style.module.scss';
 import ErrorBoundary from '../ErrorBoundry';
 
 export default (props) => {
+  console.log('sidebar');
   return (
     <div className={Styles.sidebarContent}>
       <ErrorBoundary>

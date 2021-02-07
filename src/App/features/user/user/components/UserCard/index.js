@@ -2,7 +2,7 @@ import './style.scss';
 import React, { useContext } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { modalContext } from '../../../../../shared/Modal/ModalProvider';
-import { EditUserInfo, followUser, unfollowUser } from '../../../mainUser';
+import { EditUser, followUser, unfollowUser } from '../../../mainUser';
 import FollowBtn from '../../../../../shared/FollowBtn';
 import UnfollowBtn from '../../../../../shared/UnfollowBtn';
 import { useHistory } from 'react-router-dom';
@@ -20,7 +20,7 @@ export default ({ user }) => {
     }
     toggleModal();
     addModalRoute(`/${user.username}/edit-user`);
-    addModalContent(<EditUserInfo />);
+    addModalContent(<EditUser />);
   };
 
   const isFollowing = mainUser.user.following.find(
@@ -86,12 +86,16 @@ export default ({ user }) => {
                     />
                   )}
                 </div>
-                <div>{isFollower ? <span>followes you</span> : ''}</div>
+                <div>{isFollower ? <span>Following you</span> : ''}</div>
               </>
             )}
           </div>
           <div className='user-info'>
-            <p>* born in {user.birthDay}</p>
+            {console.log(user, 'birthday')}
+            <p>
+              * born in {user.dateOfBirth.birthDay} /{' '}
+              {user.dateOfBirth.birthMonth} / {user.dateOfBirth.birthYear}
+            </p>
             <p>* rate : {user.rate} </p>
             <p>* {user.bio} </p>
           </div>

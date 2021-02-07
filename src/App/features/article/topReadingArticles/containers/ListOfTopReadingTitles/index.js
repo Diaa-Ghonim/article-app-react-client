@@ -10,7 +10,9 @@ export default () => {
   );
 
   useEffect(() => {
-    dispatch(getTopReading());
+    if (articles.length === 0) {
+      dispatch(getTopReading());
+    }
   }, [dispatch]);
 
   return (

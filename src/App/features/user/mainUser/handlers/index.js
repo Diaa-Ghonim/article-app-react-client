@@ -6,10 +6,10 @@ import {
   USER_REGISTRATION,
 } from '../../../auth/actionsType';
 import {
-  CLEAR_USER_EDIT_INFO_ERROR,
+  CLEAR_USER_EDIT_ERROR,
   MAIN_USER_FOLLOW,
   MAIN_USER_UNFOLLOW,
-  USER_EDIT_INFO,
+  USER_EDIT,
 } from '../actionTypes';
 
 export const mainUserHandlers = {
@@ -19,6 +19,7 @@ export const mainUserHandlers = {
       isLoading: true,
     };
   },
+
   [AUTHENTICATE_MAIN_USER.SUCCESS]: (state, { payload: { user } }) => {
     return {
       ...state,
@@ -28,6 +29,7 @@ export const mainUserHandlers = {
       error: null,
     };
   },
+
   [AUTHENTICATE_MAIN_USER.FAILURE]: (state, { payload: { error } }) => {
     return {
       ...state,
@@ -36,6 +38,7 @@ export const mainUserHandlers = {
       error: parseError(error),
     };
   },
+
   [USER_REGISTRATION.SUCCESS]: (state, { payload: { user, token } }) => {
     Cookie.set('token', token);
     return {
@@ -46,6 +49,7 @@ export const mainUserHandlers = {
       error: null,
     };
   },
+
   [SIGN_OUT]: (state, { payload }) => {
     console.log('Cookie clear');
     Cookie.clear();
@@ -55,25 +59,29 @@ export const mainUserHandlers = {
       user: {},
     };
   },
-  [USER_EDIT_INFO.SUCCESS]: (state, { payload: { user } }) => {
+
+  [USER_EDIT.SUCCESS]: (state, { payload: { user } }) => {
     return {
       ...state,
       user: user,
-      userEditInfoError: null,
+      userEditError: null,
     };
   },
-  [USER_EDIT_INFO.FAILURE]: (state, { payload: { error } }) => {
+
+  [USER_EDIT.FAILURE]: (state, { payload: { error } }) => {
     return {
       ...state,
-      userEditInfoError: parseError(error),
+      userEditError: parseError(error),
     };
   },
-  [CLEAR_USER_EDIT_INFO_ERROR]: (state, { payload }) => {
+
+  [CLEAR_USER_EDIT_ERROR]: (state, { payload }) => {
     return {
       ...state,
-      userEditInfoError: null,
+      userEditError: null,
     };
   },
+
   [MAIN_USER_FOLLOW.SUCCESS]: (state, { payload: { followedUser } }) => {
     const following = [...state.user.following, followedUser];
     return {
@@ -96,6 +104,7 @@ export const mainUserHandlers = {
       user: { ...state.user, following },
     };
   },
+
   [MAIN_USER_UNFOLLOW.FAILURE]: (state, { payload: { error } }) => {
     console.log('unfollow fail');
     return { ...state };

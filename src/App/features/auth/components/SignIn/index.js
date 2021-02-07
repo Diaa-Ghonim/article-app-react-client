@@ -11,10 +11,8 @@ import { clearUserRegistrationError, signIn } from '../../actionsCreator';
 export default () => {
   const dispatch = useDispatch();
   const { toggleModal } = useContext(modalContext);
-
   const [email, setEmail] = useState('');
   const [emailError, setEmailError] = useState('');
-
   const [password, setPassword] = useState('');
   const [passwordError, setPasswordError] = useState('');
 
@@ -22,7 +20,6 @@ export default () => {
   const { isAuthenticate } = useSelector(({ mainUser }) => mainUser);
   useEffect(() => {
     if (isAuthenticate) {
-      // dispatch(resetAuthSuccess());
       toggleModal();
     }
   }, [isAuthenticate]);
@@ -62,7 +59,6 @@ export default () => {
       password,
     };
 
-    console.log(userInfo);
     dispatch(signIn(userInfo));
   };
 

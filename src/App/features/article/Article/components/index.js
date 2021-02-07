@@ -24,17 +24,19 @@ export default ({ article }) => {
   }, [error]);
 
   return (
-    <div className={Style.articleWrapper}>
-      <div className={Style.articleContainer}>
-        <Address article={article} />
-        <Body article={article} />
-        <Actions article={article} />
-        {article.id === articleID && error ? (
-          <ArticleActionError errorMsg={error.msg} />
-        ) : (
-          ''
-        )}
+    <React.Profiler id='abc' onRender={() => console.log('rednder')}>
+      <div className={Style.articleWrapper}>
+        <div className={Style.articleContainer}>
+          <Address article={article} />
+          <Body article={article} />
+          <Actions article={article} />
+          {article.id === articleID && error ? (
+            <ArticleActionError errorMsg={error.msg} />
+          ) : (
+            ''
+          )}
+        </div>
       </div>
-    </div>
+    </React.Profiler>
   );
 };

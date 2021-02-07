@@ -6,14 +6,20 @@
   padding: 10px;
   border-radius: 5px;
   border: 1px solid $color-gray-light;
+  text-align: left;
 }
 
 input[type=text] {
   color: red
 }
 
+.header {
+  border: none;
+  border-radius: 0% !important;
+  border-bottom: 1px solid $color-gray-light;
+}
+
 .best-writers-container {
-  .header {}
 
   .best-writers-content {
 

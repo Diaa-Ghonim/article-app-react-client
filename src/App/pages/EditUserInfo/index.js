@@ -1,5 +1,5 @@
 import React from 'react';
-import { EditUserInfo } from '../../features/user/mainUser';
+import { EditUser } from '../../features/user/mainUser';
 
 export default () => {
   return (
@@ -12,7 +12,7 @@ export default () => {
             alignItems: 'center',
           }}
         >
-          <EditUserInfo />
+          <EditUser />
         </div>
       </div>
     </div>

@@ -63,7 +63,7 @@ export const StyledNavLink = styled(NavLink)`
   color: inherit;
   font-size: inherit;
   display: block;
-  padding: 15px;
+  padding: 10px;
 `;
 export const RegisterHolderLists = styled.div``;
 export const SignoutHolder = styled.div``;

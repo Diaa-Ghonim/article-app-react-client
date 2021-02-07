@@ -1,4 +1,4 @@
-import UserInfoCard from './components/UserInfoCard';
+import UserCard from './components/UserCard';
 import * as actions from './actionsCreator';
 import { userReducer } from './reducer';
-export { UserInfoCard, actions, userReducer };
+export { UserCard, actions, userReducer };

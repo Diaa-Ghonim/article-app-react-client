@@ -1,10 +1,4 @@
-import EditUserInfo from './components/EditUserInfo';
+import EditUser from './components/EditUser';
 import { mainUserReducer } from './reducer';
-import { followUser, unfollowUser, editUserInfo } from './actionsCreator';
-export {
-  EditUserInfo,
-  mainUserReducer,
-  followUser,
-  unfollowUser,
-  editUserInfo,
-};
+import { followUser, unfollowUser, editUser } from './actionsCreator';
+export { EditUser, mainUserReducer, followUser, unfollowUser, editUser };

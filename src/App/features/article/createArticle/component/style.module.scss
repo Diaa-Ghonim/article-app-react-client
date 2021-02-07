@@ -8,19 +8,48 @@
     padding: 10px;
     width: 100%;
     border: 1px solid #cecece;
+
   }
 }
 
-.submit {
-  width: 100%;
-  background-color: #0d526d;
+.editorBtn {
+  width: 25%;
   color: white;
   margin-top: 15px;
   font-weight: bold;
   letter-spacing: 0.5px;
   padding: 10px;
   cursor: pointer;
+  outline: none;
+  margin-left: 10px;
+}
+
+.addArticle {
+
+  background-color: #0d526d;
   border: none;
+  border: 1px solid #0d526d;
+}
+
+.clearEditor {
+  background-color: white;
+  color: #0d526d;
+
+  border: 1px solid #0d526d;
+}
+
+.danger {
+  position: relative;
+  padding: .5rem 1rem;
+  margin-top: .5rem;
+  margin-bottom: .5rem;
+  border: 1px solid transparent;
+  // border-radius: .25rem;
+  color: #842029;
+  background-color: #f8d7da;
+  border-color: #f5c2c7;
+
+
 }
 
 .common {

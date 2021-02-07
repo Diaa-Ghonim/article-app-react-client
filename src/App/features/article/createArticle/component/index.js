@@ -13,8 +13,10 @@ export class index extends Component {
       open: false,
       title: '',
       content: '',
+      isAllFieldsFilled: null,
     };
     this.addArticle = this.addArticle.bind(this);
+    this.clearEditor = this.clearEditor.bind(this);
   }
 
   handleEditorChange = (content, editor) => {
@@ -31,7 +33,17 @@ export class index extends Component {
   };
 
   addArticle() {
-    if (!this.state.title || !this.state.content) return;
+    if (!this.state.title || !this.state.content) {
+      this.setState((state, props) => {
+        return { isAllFieldsFilled: false };
+      });
+      setTimeout(() => {
+        this.setState((state, props) => {
+          return { isAllFieldsFilled: null };
+        });
+      }, 3000);
+      return;
+    }
 
     this.props.addArticle({
       title: this.state.title,
@@ -39,13 +51,34 @@ export class index extends Component {
     });
   }
 
+  clearEditor() {
+    if (!this.state.title || !this.state.content) return;
+    this.setState((state, props) => {
+      return { title: '', content: '' };
+    });
+  }
+
   render() {
     return (
       <div>
+        <div>
+          {this.state.isAllFieldsFilled === false ? (
+            <div className={Style.danger}>
+              Please Fill All Fields thanks ...
+            </div>
+          ) : (
+            ''
+          )}
+        </div>
         <div className={Style.title}>
           <div className={Style.common}>Title : </div>
           <div>
-            <input name='title' type='text' onChange={this.handleTitleChange} />
+            <input
+              name='title'
+              type='text'
+              value={this.state.title}
+              onChange={this.handleTitleChange}
+            />
           </div>
         </div>
         <div>
@@ -53,7 +86,8 @@ export class index extends Component {
         </div>
         <Editor
           apiKey='xemi0gu8epvh5gghdl8iopvds9g3iejyfuvljtcv7ybkcact'
-          initialValue=''
+          initialValue={this.state.content}
+          value={this.state.content}
           disabled={false}
           id='create-article'
           init={{
@@ -92,10 +126,16 @@ export class index extends Component {
         />
         <div>
           <input
-            className={Style.submit}
+            className={`${Style.addArticle} ${Style.editorBtn}`}
             type='submit'
-            value='add aricle'
+            value='Add Article'
             onClick={this.addArticle}
+          />
+          <input
+            className={`${Style.clearEditor} ${Style.editorBtn}`}
+            type='submit'
+            value='Clear Editor'
+            onClick={this.clearEditor}
           />
         </div>
       </div>

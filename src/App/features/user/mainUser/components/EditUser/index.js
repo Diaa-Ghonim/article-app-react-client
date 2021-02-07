@@ -5,11 +5,11 @@ import GenerateYearOptions from '../../../../../shared/GenerateYearOptions';
 import GenerateMonthOptions from '../../../../../shared/GenerateMonthOptions';
 import GenerateDayOptions from '../../../../../shared/GenerateDayOptions';
 import UploadImageSvg from './UploadImageSvg';
-import { editUserInfo } from '../..';
+import { editUser } from '../../actionsCreator';
 
 export default () => {
   const dispatch = useDispatch();
-  const { user, userEditInfoError } = useSelector(({ mainUser }) => mainUser);
+  const { user, userEditError } = useSelector(({ mainUser }) => mainUser);
   // let src = `${process.env.REACT_APP_API_URL}/images/${user.profImage}`;
   let src = user.profImage;
 
@@ -33,7 +33,7 @@ export default () => {
     form.append('username', user.username);
 
     if (user.username && fullname && birthDay && birthMonth && birthYear) {
-      dispatch(editUserInfo(form));
+      dispatch(editUser(form));
     } else {
       setIsError('please fill all fields');
     }
@@ -65,10 +65,10 @@ export default () => {
 
   useEffect(() => {
     /** error from server and you can handle message also but i'm not empty now */
-    if (userEditInfoError) {
-      setIsError(userEditInfoError.msg);
+    if (userEditError) {
+      setIsError(userEditError.msg);
     }
-  }, [userEditInfoError]);
+  }, [userEditError]);
 
   return (
     <div>
@@ -102,6 +102,7 @@ export default () => {
               type='text'
               name='name'
               id='fullname'
+              maxLength='100'
               value={fullname}
               onChange={(e) => setFullname(e.target.value)}
             />
@@ -111,7 +112,7 @@ export default () => {
             <textarea
               name='bio'
               id='bio'
-              maxLength='150'
+              maxLength='100'
               value={bio}
               onChange={(e) => setBio(e.target.value)}
             />

@@ -17,6 +17,7 @@ import {
   Search,
   EditUserInfo,
 } from '../pages';
+import EmptyPage from '../pages/EmptyPage';
 
 export default () => {
   const dispatch = useDispatch();
@@ -45,7 +46,6 @@ export default () => {
           <Switch>
             <Redirect exact from='/' to='/home' />
             <Route exact strict path='/home' component={Home} />
-
             <PrivateRoute
               exact
               path='/create-article'
@@ -53,15 +53,15 @@ export default () => {
               component={CreateArticle}
             />
             {/* <PrivateRoute
-                exact
-                path={/\/search\?q=.?/}
-                // path='/search='
-                render={() => {
-                  console.log('hello rednder')
-                }}
-                isAuthenticate={isAuthenticate}
-                component={Search}
-              /> */}
+              exact
+              path={/\/search\?q=.?/}
+              // path='/search='
+              render={() => {
+                console.log('hello rednder');
+              }}
+              isAuthenticate={isAuthenticate}
+              component={Search}
+            /> */}
             <PrivateRoute
               exact
               path='/top-reading'

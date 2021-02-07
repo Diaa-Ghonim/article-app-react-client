@@ -6,7 +6,7 @@ const initialState = {
   isAuthenticate: false,
   isLoading: false,
   error: null,
-  userEditInfoError: null,
+  userEditError: null,
 };
 
 export const mainUserReducer = createReducer(initialState, {

@@ -1,5 +1,5 @@
 import {
-  USER_EDIT_INFO,
+  USER_EDIT,
   // CLEAR_USER_EDIT_INFO_ERROR,
   MAIN_USER_FOLLOW,
   MAIN_USER_UNFOLLOW,
@@ -7,8 +7,8 @@ import {
 import axios from '../../../../util/axiosConfig';
 import { createAction } from '../../../../util/createActionsHelpers';
 
-const editUserInfoSuccess = createAction(USER_EDIT_INFO.SUCCESS, 'user');
-const editUserInfoFailure = createAction(USER_EDIT_INFO.FAILURE, 'error');
+const editUserSuccess = createAction(USER_EDIT.SUCCESS, 'user');
+const editUserFailure = createAction(USER_EDIT.FAILURE, 'error');
 const mainUserFollowSuccess = createAction(
   MAIN_USER_FOLLOW.SUCCESS,
   'followedUser'
@@ -23,12 +23,12 @@ const mainUserUnfollowFailure = createAction(
   'error'
 );
 
-export const editUserInfo = (userInfo) => async (dispatch) => {
+export const editUser = (user) => async (dispatch) => {
   try {
-    const { data: user } = await axios.put('/api/users', userInfo);
-    dispatch(editUserInfoSuccess(user));
+    const { data: User } = await axios.put('/api/users', user);
+    dispatch(editUserSuccess(User));
   } catch (error) {
-    dispatch(editUserInfoFailure(error));
+    dispatch(editUserFailure(error));
   }
 };
 

@@ -14,7 +14,9 @@ export default () => {
   );
 
   useEffect(() => {
-    dispatch(getBestWriters());
+    if (bestWriters.length === 0) {
+      dispatch(getBestWriters());
+    }
   }, [dispatch]);
 
   return (
